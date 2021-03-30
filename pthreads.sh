@@ -147,6 +147,13 @@ echo "<FilesMatch \.php$>
 rm php-7.2.26.tar.gz
 rm -rf php-7.2.26
 
+#extension on php.ini
+echo "extension=pthreads.so" >> /etc/php.ini
+echo "zend_extension=opcache.so" >> /etc/php.ini
+
+#config
+export USE_ZEND_ALLOC=0
+
 # Time Zone Php.ini
 sed -i "s/^;date.timezone =$/date.timezone = \"Europe\/Paris\"/" /etc/php.ini |grep "^timezone" /etc/php.ini
 
