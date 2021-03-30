@@ -28,12 +28,14 @@ mv icu-config /usr/bin
 cd /
 
 #Telechargement PHP 7.0.8 + extraction et suppresion.
-wget http://cl1.php.net/get/php-7.2.26.tar.gz/from/this/mirror -O php-7.2.26.tar.gz
-tar zxvf php-7.2.26.tar.gz
+wget http://cl1.php.net/get/php-7.2.6.tar.gz/from/this/mirror -O php-7.2.6.tar.gz
+tar zxvf php-7.2.6.tar.gz
 rm -rf ext/pthreads/
+rm php-7.2.6.tar.gz
+mv php-src php-7.2.6
 
 #Telechargement pthreads + movement dossier
-cd php-7.2.26/ext
+cd php-7.2.6/ext
 git clone https://github.com/krakjoe/pthreads -b master pthreads
 cd ..
 
@@ -118,6 +120,16 @@ make clear
 make
 make install
 
+chmod o+x /usr/bin/phpize
+chmod o+x /usr/bin/php-config
+
+cd ext/pthreads*
+/usr/bin/phpize
+
+./configure --prefix=/usr --with-libdir=/lib/x86_64-linux-gnu --enable-pthreads=shared --with-php-config=/usr/bin/php-config
+make && make install
+cd ../../
+
 #####Config PHP.INI DU SERVEUR#########
 #    nano php.ini-development         #
 # display_errors = Off ===> on        #
@@ -146,8 +158,7 @@ echo "<FilesMatch \.php$>
 
 #Suppression
 cd ..
-rm php-7.2.26.tar.gz
-rm -rf php-7.2.26
+rm -rf php-7.2.6
 
 #extension on php.ini
 echo "extension=pthreads.so" >> /etc/php-cli.ini
@@ -159,7 +170,7 @@ export USE_ZEND_ALLOC=0
 # Time Zone Php.ini
 sed -i "s/^;date.timezone =$/date.timezone = \"Europe\/Paris\"/" /etc/php.ini |grep "^timezone" /etc/php.ini
 
-apt-get install -y ntp ntpdate
+apt-get install ntp ntpdate
 /etc/init.d/ntp stop 
 ntpdate ntp.shoa.cl
 /etc/init.d/ntp start
