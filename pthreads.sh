@@ -133,6 +133,7 @@ make install
 #######################################
 
 cp php.ini-development /etc/php.ini
+cp php.ini-development /etc/php-cli.ini
 
 cp /etc/apache2/mods-available/php7.load /etc/apache2/mods-enabled/php7.load
 echo "<FilesMatch \.php$>
@@ -148,7 +149,7 @@ rm php-7.2.26.tar.gz
 rm -rf php-7.2.26
 
 #extension on php.ini
-echo "extension=pthreads.so" >> /etc/php.ini
+echo "extension=pthreads.so" >> /etc/php-cli.ini
 echo "zend_extension=opcache.so" >> /etc/php.ini
 
 #config
