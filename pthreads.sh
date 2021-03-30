@@ -144,7 +144,8 @@ echo "<FilesMatch \.php$>
 #Restart apache
 /etc/init.d/apache2 restart
 
-#Suppression 
+#Suppression
+cd ..
 rm php-7.2.26.tar.gz
 rm -rf php-7.2.26
 
