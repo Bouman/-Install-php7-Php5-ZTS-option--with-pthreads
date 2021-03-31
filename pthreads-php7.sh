@@ -28,7 +28,7 @@ mv icu-config /usr/bin
 cd /
 
 #Telechargement PHP 7.0.8 + extraction et suppresion.
-wget http://cl1.php.net/get/php-7.2.6.tar.gz/from/this/mirror -O php-7.1.31.tar.gz
+wget http://cl1.php.net/get/php-7.1.31.tar.gz/from/this/mirror -O php-7.1.31.tar.gz
 tar zxvf php-7.1.31.tar.gz
 rm -rf ext/pthreads/
 rm php-7.1.31.tar.gz
