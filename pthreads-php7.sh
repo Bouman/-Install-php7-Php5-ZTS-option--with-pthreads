@@ -12,8 +12,8 @@ mysql_secure_installation
 apt-get install build-essential apache2-dev libcurl4-openssl-dev libsqlite3-dev libmariadb-dev-compat:i386 libreadline-dev libzip-dev libxslt1-dev libicu-dev libmcrypt-dev libmhash-dev libpcre3-dev libjpeg-dev libfreetype6-dev libbz2-dev libxpm-dev bison re2c zlib1g-dev sqlite3 libsqlite3-dev libbz2-dev libcurl4-openssl-dev libenchant-dev libonig-dev libpspell-dev libedit-dev libreadline-dev libxslt-dev libwebp-dev libxpm-dev
 
 # Installation PHP7 (Without ZTS pthreads)
-apt-get install php7.2 php-pear
-apt-get build-dep php7.2
+apt-get install php7.1 php-pear
+apt-get build-dep php7.1
 
 #Etre sur que curl est bien configuré
 cd /usr/include
@@ -28,11 +28,11 @@ mv icu-config /usr/bin
 cd /
 
 #Telechargement PHP 7.0.8 + extraction et suppresion.
-wget http://cl1.php.net/get/php-7.2.6.tar.gz/from/this/mirror -O php-7.2.6.tar.gz
-tar zxvf php-7.2.6.tar.gz
+wget http://cl1.php.net/get/php-7.2.6.tar.gz/from/this/mirror -O php-7.1.31.tar.gz
+tar zxvf php-7.1.31.tar.gz
 rm -rf ext/pthreads/
-rm php-7.2.6.tar.gz
-mv php-src php-7.2.6
+rm php-7.1.31.tar.gz
+mv php-src php-7.1.31
 
 #Telechargement pthreads + movement dossier
 cd php-7.2.6/ext
