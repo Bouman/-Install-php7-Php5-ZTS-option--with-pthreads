@@ -1,4 +1,4 @@
-# -Install-php7-ZTS-option--with-pthreads
+# -Install-php7-php5-ZTS-option--with-pthreads
 fr-FR
 Install php7.2.26 avec pthreads 3.1.6 sur Debian 10
 
