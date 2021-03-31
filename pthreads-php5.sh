@@ -1,4 +1,14 @@
+#Pré requis
+apt-get install gcc make libxml2-dev autoconf ca-certificates unzip nodejs curl libcurl4-openssl-dev pkg-config 
 
+#Dossier + Téléchargements
+mkdir /home/install
+cd /home/install
+wget http://be2.php.net/get/php-5.6.40.tar.bz2/from/this/mirror -O php-5.6.40.tar.bz2
+tar -xjvf php-5.6.40.tar.bz2
+cd php-5.6.40
+
+#Compilation et Installation
 ./configure --disable-fileinfo --enable-maintainer-zts --enable-pthreads --prefix=/usr --with-config-file-path=/etc --with-curl --enable-cli --with-apxs2=/usr/bin/apxs2 \
 --enable-mbstring \
     --enable-bcmath \
@@ -67,3 +77,10 @@
     --localstatedir=/var \
     --with-layout=GNU \
     --disable-rpath
+
+make
+make install   
+    
+#Téléchargement Ptreads
+
+    
