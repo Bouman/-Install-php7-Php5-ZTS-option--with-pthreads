@@ -35,7 +35,7 @@ rm php-7.1.31.tar.gz
 mv php-src php-7.1.31
 
 #Telechargement pthreads + movement dossier
-cd php-7.2.6/ext
+cd php-7.1.31/ext
 git clone https://github.com/krakjoe/pthreads -b master pthreads
 cd ..
 
