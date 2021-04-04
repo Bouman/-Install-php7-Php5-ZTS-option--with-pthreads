@@ -9,11 +9,10 @@ apt install apt install mariadb-server
 mysql_secure_installation
 
 # Dependance Prérequis
-apt-get install build-essential libtool-bin apache2-dev libcurl4-openssl-dev libsqlite3-dev libmariadb-dev-compat:i386 libreadline-dev libzip-dev libxslt1-dev libicu-dev libmcrypt-dev libmhash-dev libpcre3-dev libjpeg-dev libfreetype6-dev libbz2-dev libxpm-dev bison re2c zlib1g-dev sqlite3 libsqlite3-dev libbz2-dev libcurl4-openssl-dev libenchant-dev libonig-dev libpspell-dev libedit-dev libreadline-dev libxslt-dev libwebp-dev libxpm-dev
+apt-get install build-essential composer libtool-bin apache2-dev libcurl4-openssl-dev libsqlite3-dev libmariadb-dev-compat:i386 libreadline-dev libzip-dev libxslt1-dev libicu-dev libmcrypt-dev libmhash-dev libpcre3-dev libjpeg-dev libfreetype6-dev libbz2-dev libxpm-dev bison re2c zlib1g-dev sqlite3 libsqlite3-dev libbz2-dev libcurl4-openssl-dev libenchant-dev libonig-dev libpspell-dev libedit-dev libreadline-dev libxslt-dev libwebp-dev libxpm-dev
 
 # Installation PHP7 (Without ZTS pthreads)
-apt-get install php7.2
-apt-get build-dep php7.2
+apt-get install php7.2 php-pear php-mbstring
 
 #Etre sur que curl est bien configuré
 cd /usr/include
@@ -47,7 +46,7 @@ rm -rf autom4te.cache/
 ./buildconf --force
 make distclean
 
-./configure --disable-fileinfo --enable-maintainer-zts --enable-pthreads --prefix=/usr --with-config-file-path=/etc --with-curl --enable-cli --with-apxs2=/usr/bin/apxs2 \
+./configure --disable-fileinfo --enable-maintainer-zts --enable-pthreads --prefix=/usr --with-config-file-path=/etc --with-curl --enable-cli --with-apxs2=/usr/bin/apxs \
 --enable-mbstring \
     --enable-bcmath \
     --enable-calendar \
