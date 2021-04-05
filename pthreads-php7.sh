@@ -1,3 +1,5 @@
+#!/bin/bash
+
 apt-get update
 apt-get install build-essential
 
@@ -115,7 +117,7 @@ make distclean
     --disable-rpath
 
 make clear 
-make
+make -j 4
 make install
 libtool --finish /php-7.3.27/libs
 
@@ -168,4 +170,5 @@ sed -i "s/^;date.timezone =$/date.timezone = \"Europe\/Paris\"/" /etc/php.ini |g
 
 #Restart apache
 systemctl status apache2.service
-
+php -m
+php -v
