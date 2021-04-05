@@ -31,7 +31,6 @@ wget http://cl1.php.net/get/php-7.3.27.tar.gz/from/this/mirror -O php-7.3.27.tar
 tar zxvf php-7.3.27.tar.gz
 rm -rf ext/pthreads/
 rm php-7.3.27.tar.gz
-mv php-src php-7.3.27
 
 #Telechargement pthreads + movement dossier
 cd php-7.3.27/ext
@@ -46,7 +45,7 @@ rm -rf autom4te.cache/
 ./buildconf --force
 make distclean
 
-./configure --disable-fileinfo --enable-maintainer-zts --enable-pthreads --prefix=/usr --with-config-file-path=/etc --with-curl --enable-cli --with-apxs2=/usr/bin/apxs \
+./configure --disable-fileinfo --enable-maintainer-zts --enable-pthreads=shared --prefix=/usr --with-config-file-path=/etc --with-curl --enable-cli --with-apxs2=/usr/bin/apxs \
 --enable-mbstring \
     --enable-bcmath \
     --enable-calendar \
