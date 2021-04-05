@@ -15,8 +15,8 @@ apt-get install build-essential composer libtool-bin apache2-dev libcurl4-openss
 apt-get install php7.2 php-pear php-mbstring
 
 #Etre sur que curl est bien configuré
-cd /usr/include
-ln -s x86_64-linux-gnu/curl
+# cd /usr/include
+# ln -s x86_64-linux-gnu/curl
 
 #icu-config configuration
 curl https://gist.githubusercontent.com/jasny/e91f4e2d386e91e6de5cf581795e9408/raw/16e2c42136eb3f214222c80d492e71942b77f174/icu-config > icu-config
@@ -169,10 +169,3 @@ export USE_ZEND_ALLOC=0
 
 # Time Zone Php.ini
 sed -i "s/^;date.timezone =$/date.timezone = \"Europe\/Paris\"/" /etc/php.ini |grep "^timezone" /etc/php.ini
-
-apt-get install ntp ntpdate
-/etc/init.d/ntp stop 
-ntpdate ntp.shoa.cl
-/etc/init.d/ntp start
-date
-
