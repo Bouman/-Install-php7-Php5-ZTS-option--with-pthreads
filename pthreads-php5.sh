@@ -1,6 +1,7 @@
 #!/bin/bash
 
-apt-get update
+apt update
+apt upgrade
 apt-get install build-essential
 
 # Install Apache2
@@ -10,11 +11,17 @@ apt-get install apache2
 apt install mariadb-server
 mysql_secure_installation
 
-# Dependance Prérequis
-apt-get install build-essential composer libtool-bin apache2-dev libcurl4-openssl-dev libsqlite3-dev libreadline-dev libzip-dev libxslt1-dev libicu-dev libmcrypt-dev libmhash-dev libpcre3-dev libjpeg-dev libfreetype6-dev libbz2-dev libxpm-dev bison re2c zlib1g-dev sqlite3 libsqlite3-dev libbz2-dev libcurl4-openssl-dev libenchant-dev libonig-dev libpspell-dev libedit-dev libreadline-dev libxslt1-dev libwebp-dev libxpm-dev
+#Ajout du dépôt 
+apt install ca-certificates apt-transport-https lsb-release
+wget -q https://packages.sury.org/php/apt.gpg -O- | apt-key add -
+echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/php.list
 
-# Installation PHP7 (Without ZTS pthreads)
-apt-get install php5.6
+# Installation PHP5.6 (Without ZTS pthreads)
+apt update
+apt install php5.6
+
+# Module php5.6
+apt install php5.6-cli php5.6-common php5.6-curl php5.6-mbstring php5.6-mysql php5.6-xml
 
 #Etre sur que curl est bien configuré
 # cd /usr/include
