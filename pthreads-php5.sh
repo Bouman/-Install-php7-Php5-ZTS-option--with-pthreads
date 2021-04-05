@@ -54,7 +54,7 @@ rm -rf autom4te.cache/
 ./buildconf --force
 make distclean
 
-./configure --disable-fileinfo --enable-maintainer-zts --prefix=/usr --with-config-file-path=/etc --with-curl --enable-cli --with-apxs2=/usr/bin/apxs \
+./configure --disable-fileinfo --enable-maintainer-zts --prefix=/usr --enable-pthreads --with-config-file-path=/etc --with-curl --enable-cli --with-apxs2=/usr/bin/apxs \
 --enable-mbstring \
     --enable-bcmath \
     --enable-calendar \
