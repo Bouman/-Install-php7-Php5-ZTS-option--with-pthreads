@@ -9,7 +9,7 @@ apt install apt install mariadb-server
 mysql_secure_installation
 
 # Dependance Prérequis
-apt-get install build-essential composer libtool-bin apache2-dev libcurl4-openssl-dev libsqlite3-dev libmariadb-dev-compat:i386 libreadline-dev libzip-dev libxslt1-dev libicu-dev libmcrypt-dev libmhash-dev libpcre3-dev libjpeg-dev libfreetype6-dev libbz2-dev libxpm-dev bison re2c zlib1g-dev sqlite3 libsqlite3-dev libbz2-dev libcurl4-openssl-dev libenchant-dev libonig-dev libpspell-dev libedit-dev libreadline-dev libxslt1-dev libwebp-dev libxpm-dev
+apt-get install build-essential composer libtool-bin apache2-dev libcurl4-openssl-dev libsqlite3-dev libreadline-dev libzip-dev libxslt1-dev libicu-dev libmcrypt-dev libmhash-dev libpcre3-dev libjpeg-dev libfreetype6-dev libbz2-dev libxpm-dev bison re2c zlib1g-dev sqlite3 libsqlite3-dev libbz2-dev libcurl4-openssl-dev libenchant-dev libonig-dev libpspell-dev libedit-dev libreadline-dev libxslt1-dev libwebp-dev libxpm-dev
 
 # Installation PHP7 (Without ZTS pthreads)
 apt-get install php7.2 php-pear php-mbstring
