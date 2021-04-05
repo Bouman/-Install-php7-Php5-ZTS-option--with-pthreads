@@ -26,7 +26,7 @@ mv icu-config /usr/bin
 # Deplacement à la base
 cd /
 
-#Telechargement PHP 7.0.8 + extraction et suppresion.
+#Telechargement PHP 7.3.27 + extraction et suppresion.
 wget http://cl1.php.net/get/php-7.3.27.tar.gz/from/this/mirror -O php-7.3.27.tar.gz
 tar zxvf php-7.3.27.tar.gz
 rm -rf ext/pthreads/
@@ -166,4 +166,5 @@ export USE_ZEND_ALLOC=0
 sed -i "s/^;date.timezone =$/date.timezone = \"Europe\/Paris\"/" /etc/php.ini |grep "^timezone" /etc/php.ini
 
 #Restart apache
-/etc/init.d/apache2 restart
+systemctl status apache2.service
+
