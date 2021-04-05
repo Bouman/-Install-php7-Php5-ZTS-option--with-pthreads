@@ -5,7 +5,7 @@ apt-get install build-essential
 apt-get install apache2
 
 # Install Mysql
-apt install apt install mariadb-server
+apt install mariadb-server
 mysql_secure_installation
 
 # Dependance Prérequis
