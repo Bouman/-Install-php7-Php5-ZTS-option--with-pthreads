@@ -155,11 +155,11 @@ cd ../../
 cp php.ini-development /etc/php.ini
 cp php.ini-development /etc/php-cli.ini
 
-cp /etc/apache2/mods-available/php7.load /etc/apache2/mods-enabled/php7.load
+cp /etc/apache2/mods-available/php5.6.load /etc/apache2/mods-enabled/php5.6.load
 echo "<FilesMatch \.php$>
     SetHandler application/x-httpd-php
 </FilesMatch>
-" >> /etc/apache2/mods-enabled/php7.conf
+" >> /etc/apache2/mods-enabled/php5.6.conf
 
 #Suppression
 cd ..
