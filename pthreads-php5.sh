@@ -19,13 +19,20 @@ echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt
 # Installation PHP5.6 (Without ZTS pthreads)
 apt update
 apt install php5.6
-
 # Module php5.6
 apt install php5.6-cli php5.6-common php5.6-curl php5.6-mbstring php5.6-mysql php5.6-xml
 
+#OPENSSL OUTDATE < v1.1 FOR PHP5.6
+apt-get install make 
+curl https://www.openssl.org/source/openssl-1.0.2l.tar.gz | tar xz && cd openssl-1.0.2l && sudo ./config && make -j 4 && make -j 4 install 
+ln -sf /usr/local/ssl/bin/openssl `which openssl` 
+
+# (Used to check the version of the Current OpenSSL binaries)  
+openssl version -v 
+
 #Etre sur que curl est bien configuré
-# cd /usr/include
-# ln -s x86_64-linux-gnu/curl
+cd /usr/include
+ln -s x86_64-linux-gnu/curl
 
 #icu-config configuration
 curl https://gist.githubusercontent.com/jasny/e91f4e2d386e91e6de5cf581795e9408/raw/16e2c42136eb3f214222c80d492e71942b77f174/icu-config > icu-config
@@ -152,8 +159,8 @@ cd ../../
 #                                     #
 #######################################
 
-cp php.ini-development /etc/php/5.6/cli/php.ini
-cp php.ini-development /etc/php/5.6/cli/php-cli.ini
+cp php.ini-development /etc/php.ini
+cp php.ini-development /etc/php-cli.ini
 
 cp /etc/apache2/mods-available/php5.6.load /etc/apache2/mods-enabled/php5.6.load
 echo "<FilesMatch \.php$>
