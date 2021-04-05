@@ -125,7 +125,7 @@ chmod o+x /usr/bin/php-config
 cd ext/pthreads*
 /usr/bin/phpize
 
-./configure --prefix=/usr --enable-pthreads=shared
+./configure --prefix=/usr --enable-pthreads=shared --with-php-config=/usr/bin/php-config
 make && make install
 cd ../../
 
