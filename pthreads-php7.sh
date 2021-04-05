@@ -1,7 +1,9 @@
 #!/bin/bash
 
 apt-get update
+apt-get dist-upgrade
 apt-get install build-essential
+apt-get install gcc git libcurl4 curl dpkg-dev libdpkg-perl debhelper po-debconf gettext fakeroot make libncurses5-dev rpm zlib1g-dev g++ autoconf build-essential flex bison fakeroot  bc libssl-dev rsync libelf-dev xz-utils rsync
 
 # Install Apache2
 apt-get install apache2
@@ -38,6 +40,9 @@ rm php-7.3.27.tar.gz
 cd php-7.3.27/ext
 git clone https://github.com/krakjoe/pthreads -b master pthreads
 cd ..
+
+#PEAR install
+wget http://pear.php.net/go-pear.phar && php go-pear.phar
 
 #Suppression des fichier PHP actuel
 rm -rf aclocal.m4
