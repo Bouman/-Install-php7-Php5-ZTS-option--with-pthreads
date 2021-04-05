@@ -169,3 +169,6 @@ export USE_ZEND_ALLOC=0
 
 # Time Zone Php.ini
 sed -i "s/^;date.timezone =$/date.timezone = \"Europe\/Paris\"/" /etc/php.ini |grep "^timezone" /etc/php.ini
+
+#Restart apache
+/etc/init.d/apache2 restart
