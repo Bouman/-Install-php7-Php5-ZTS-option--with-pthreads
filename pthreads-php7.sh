@@ -152,9 +152,6 @@ echo "<FilesMatch \.php$>
 </FilesMatch>
 " > /etc/apache2/mods-enabled/php7.conf
 
-#Restart apache
-/etc/init.d/apache2 restart
-
 #Suppression
 cd ..
 rm -rf php-7.3.27
@@ -170,7 +167,3 @@ sed -i "s/^;date.timezone =$/date.timezone = \"Europe\/Paris\"/" /etc/php.ini |g
 
 #Restart apache
 /etc/init.d/apache2 restart
-
-# Check Modules
-php -m (check pthread loaded)
-
