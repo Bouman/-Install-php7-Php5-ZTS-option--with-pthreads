@@ -12,7 +12,7 @@ mysql_secure_installation
 apt-get install build-essential composer libtool-bin apache2-dev libcurl4-openssl-dev libsqlite3-dev libreadline-dev libzip-dev libxslt1-dev libicu-dev libmcrypt-dev libmhash-dev libpcre3-dev libjpeg-dev libfreetype6-dev libbz2-dev libxpm-dev bison re2c zlib1g-dev sqlite3 libsqlite3-dev libbz2-dev libcurl4-openssl-dev libenchant-dev libonig-dev libpspell-dev libedit-dev libreadline-dev libxslt1-dev libwebp-dev libxpm-dev
 
 # Installation PHP7 (Without ZTS pthreads)
-apt-get install php7.2
+apt-get install php7.3
 
 #Etre sur que curl est bien configuré
 # cd /usr/include
@@ -27,14 +27,14 @@ mv icu-config /usr/bin
 cd /
 
 #Telechargement PHP 7.0.8 + extraction et suppresion.
-wget http://cl1.php.net/get/php-7.2.34.tar.gz/from/this/mirror -O php-7.2.34.tar.gz
-tar zxvf php-7.2.34.tar.gz
+wget http://cl1.php.net/get/php-7.3.27.tar.gz/from/this/mirror -O php-7.3.27.tar.gz
+tar zxvf php-7.3.27.tar.gz
 rm -rf ext/pthreads/
-rm php-7.2.34.tar.gz
-mv php-src php-7.2.34
+rm php-7.3.27.tar.gz
+mv php-src php-7.3.27
 
 #Telechargement pthreads + movement dossier
-cd php-7.2.34/ext
+cd php-7.3.27/ext
 git clone https://github.com/krakjoe/pthreads -b master pthreads
 cd ..
 
@@ -118,7 +118,7 @@ make distclean
 make clear 
 make
 make install
-libtool --finish /php-7.2.34/libs
+libtool --finish /php-7.3.27/libs
 
 chmod o+x /usr/bin/phpize
 chmod o+x /usr/bin/php-config
@@ -158,10 +158,9 @@ echo "<FilesMatch \.php$>
 
 #Suppression
 cd ..
-rm -rf php-7.2.34
+rm -rf php-7.3.27
 
 #extension on php.ini
-echo "extension=pthreads.so" >> /etc/php-cli.ini
 echo "zend_extension=opcache.so" >> /etc/php.ini
 
 #config
@@ -172,3 +171,7 @@ sed -i "s/^;date.timezone =$/date.timezone = \"Europe\/Paris\"/" /etc/php.ini |g
 
 #Restart apache
 /etc/init.d/apache2 restart
+
+# Check Modules
+php -m (check pthread loaded)
+
