@@ -157,6 +157,7 @@ cd ..
 rm -rf php-7.3.27
 
 #extension on php.ini
+echo "extension=pthreads.so" >> /etc/php-cli.ini
 echo "zend_extension=opcache.so" >> /etc/php.ini
 
 #config
