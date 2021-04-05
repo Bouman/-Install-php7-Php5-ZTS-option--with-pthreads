@@ -166,8 +166,8 @@ cd ..
 rm -rf php-5.6.40
 
 #extension on php.ini
-echo "extension=pthreads.so" >> /etc/php-cli.ini
-echo "zend_extension=opcache.so" >> /etc/php.ini
+echo "extension=pthreads.so" >> /etc/php/5.6/cli/php-cli.ini
+echo "zend_extension=opcache.so" >> /etc/php/5.6/cli/php.ini
 
 #config
 export USE_ZEND_ALLOC=0
