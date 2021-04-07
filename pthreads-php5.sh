@@ -83,8 +83,8 @@ cd ../../
 #                                     #
 #######################################
 
-cp php.ini-development /etc/php/5.6/cli/php.ini
-cp php.ini-development /etc/php/5.6/cli/php-cli.ini
+cp php.ini-development /etc/php.ini
+cp php.ini-development /etc/php-cli.ini
 
 cp /etc/apache2/mods-available/php5.6.load /etc/apache2/mods-enabled/php5.6.load
 echo "<FilesMatch \.php$>
@@ -97,8 +97,8 @@ cd ..
 rm -rf php-5.6.40
 
 #extension on php.ini
-echo "extension=pthreads.so" >> /etc/php/5.6/cli/php-cli.ini
-echo "zend_extension=opcache.so" >> /etc/php/5.6/cli/php.ini
+echo "extension=pthreads.so" >> /etc/php-cli.ini
+echo "zend_extension=opcache.so" >> /etc/php.ini
 
 #config
 export USE_ZEND_ALLOC=0
