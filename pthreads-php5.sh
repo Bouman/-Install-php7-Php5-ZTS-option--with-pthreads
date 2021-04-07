@@ -22,13 +22,9 @@ apt install php5.6
 # Module php5.6
 apt install php5.6-cli php5.6-common php5.6-curl php5.6-mbstring php5.6-mysql php5.6-xml
 
-#OPENSSL OUTDATE < v1.1 FOR PHP5.6
+#OPENSSL INSTALL v1.0.21 pour compil FOR PHP5.6 dans le dossier build-openssl
 apt-get install make 
-curl https://www.openssl.org/source/openssl-1.0.2l.tar.gz | tar xz && cd openssl-1.0.2l && ./config && make -j 4 && make -j 4 install 
-ln -sf /usr/local/ssl/bin/openssl `which openssl` 
-
-# (Used to check the version of the Current OpenSSL binaries)  
-openssl version -v 
+curl https://www.openssl.org/source/openssl-1.0.2l.tar.gz | tar xz && cd openssl-1.0.2l && ./config --prefix=/home/user/build-openssl && make -j 4 && make -j 4 install 
 
 #Etre sur que curl est bien configuré
 cd /usr/include
@@ -98,7 +94,6 @@ make distclean
     --with-webp-dir=/usr/include/ \
     --with-png-dir=/usr/include/ \
     --with-enchant \
-    --with-icu-dir=/usr \
     --with-gd \
     --with-curl \
     --with-jpeg-dir=/usr \
@@ -111,8 +106,8 @@ make distclean
     --with-mhash \
     --with-libzip \
     --with-pcre-regex \
-    --with-openssl \
-    --with-openssl-dir=/usr/bin \
+    --with-openssl=/home/user/build-openssl \
+    --with-openssl-dir=/home/user/build-openssl \
     --with-mysql-sock=/var/run/mysqld/mysqld.sock \
     --with-mysqli=mysqlnd \
     --with-sqlite3=/usr \
