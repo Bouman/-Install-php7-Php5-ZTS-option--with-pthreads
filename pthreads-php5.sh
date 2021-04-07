@@ -52,7 +52,7 @@ rm -rf autom4te.cache/
 ./buildconf --force
 make distclean
 
-./configure --prefix=/usr --with-curl --with-mysql --enable-maintainer-zts --enable-sockets --with-openssl=/home/user/build-openssl --with-pdo-mysql --with-apxs2=/usr/bin/apxs --enable-cli
+./configure --prefix=/usr --with-mysql --enable-maintainer-zts --enable-sockets --with-openssl=/home/user/build-openssl --with-pdo-mysql --with-apxs2=/usr/bin/apxs --enable-cli
 
 make clear 
 make -j 4
