@@ -52,73 +52,7 @@ rm -rf autom4te.cache/
 ./buildconf --force
 make distclean
 
-./configure --disable-fileinfo --enable-maintainer-zts --prefix=/usr --with-config-file-path=/etc --with-curl --enable-cli --with-apxs2=/usr/bin/apxs \
---enable-mbstring \
-    --enable-bcmath \
-    --enable-calendar \
-    --enable-cli \
-    --enable-debug \
-    --enable-exif \
-    --enable-fpm \
-    --enable-ftp \
-    --enable-hash \
-    --enable-intl \
-    --enable-json \
-    --enable-maintainer-zts \
-    --enable-mbregex \
-    --enable-mysqlnd \
-    --enable-opcache \
-    --enable-pcntl \
-    --enable-phar \
-    --enable-posix \
-    --enable-session \
-    --enable-simplexml \
-    --enable-soap \
-    --enable-sockets \
-    --enable-sysvmsg \
-    --enable-sysvsem \
-    --enable-sysvshm \
-    --enable-xml \
-    --enable-wddx \
-    --enable-zip \
-    --enable-inline-optimization \
-    --enable-intl \
-    --disable-cgi \
-    --with-jpeg-dir=/usr/include/ \
-    --with-xpm-dir=/usr/include/ \
-    --with-webp-dir=/usr/include/ \
-    --with-png-dir=/usr/include/ \
-    --with-enchant \
-    --with-gd \
-    --with-curl \
-    --with-jpeg-dir=/usr \
-    --with-png-dir=shared,/usr \
-    --with-xpm-dir=/usr \
-    --with-freetype-dir=no \
-    --with-bz2=/usr \
-    --with-gettext \
-    --with-iconv-dir=/usr \
-    --with-mhash \
-    --with-libzip \
-    --with-pcre-regex \
-    --with-openssl=/home/user/build-openssl \
-    --with-openssl-dir=/home/user/build-openssl \
-    --with-mysql-sock=/var/run/mysqld/mysqld.sock \
-    --with-mysqli=mysqlnd \
-    --with-sqlite3=/usr \
-    --with-pdo-mysql=mysqlnd \
-    --with-pdo-sqlite=/usr \
-    --with-pspell \
-    --with-readline \
-    --with-tsrm-pthreads \
-    --with-xsl \
-    --with-zlib-dir=/usr \
-    --with-fpm-user=www-data \
-    --with-fpm-group=www-data \
-    --config-cache \
-    --localstatedir=/var \
-    --with-layout=GNU \
-    --disable-rpath
+./configure --prefix /usr/local --with-mysql --enable-maintainer-zts --enable-sockets --with-openssl=/home/user/build-openssl --with-pdo-mysql 
 
 make clear 
 make -j 4
