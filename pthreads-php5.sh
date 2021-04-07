@@ -30,11 +30,6 @@ curl https://www.openssl.org/source/openssl-1.0.2l.tar.gz | tar xz && cd openssl
 cd /usr/include
 ln -s x86_64-linux-gnu/curl
 
-#icu-config configuration
-curl https://gist.githubusercontent.com/jasny/e91f4e2d386e91e6de5cf581795e9408/raw/16e2c42136eb3f214222c80d492e71942b77f174/icu-config > icu-config
-chmod +x icu-config
-mv icu-config /usr/bin
-
 # Deplacement à la base
 cd /
 
