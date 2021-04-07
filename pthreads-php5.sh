@@ -56,7 +56,6 @@ make distclean
 --enable-mbstring \
     --enable-bcmath \
     --enable-calendar \
-    --enable-cli \
     --enable-debug \
     --enable-exif \
     --enable-fpm \
@@ -86,10 +85,8 @@ make distclean
     --disable-cgi \
     --with-jpeg-dir=/usr/include/ \
     --with-xpm-dir=/usr/include/ \
-    --with-webp-dir=/usr/include/ \
     --with-png-dir=/usr/include/ \
     --with-enchant \
-    --with-icu-dir=/usr \
     --with-gd \
     --with-curl \
     --with-jpeg-dir=/usr \
