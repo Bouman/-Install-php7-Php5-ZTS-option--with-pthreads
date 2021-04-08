@@ -39,7 +39,7 @@ mv icu-config /usr/bin
 cd /
 
 #Telechargement PHP 5.6.40 + extraction et suppresion.
-wget http://cl1.php.net/get/php-5.6.40.tar.gz/from/this/mirror -O php-5.6.40.tar.gz
+wget https://www.php.net/distributions/php-5.6.40.tar.gz
 tar zxvf php-5.6.40.tar.gz
 rm -rf ext/pthreads/
 rm php-5.6.40.tar.gz
