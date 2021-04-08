@@ -97,7 +97,6 @@ CXXFLAGS="-std=c++11"
     --disable-cgi \
     --with-jpeg-dir=/usr/include/ \
     --with-xpm-dir=/usr/include/ \
-    --with-webp-dir=/usr/include/ \
     --with-png-dir=/usr/include/ \
     --with-enchant \
     --with-icu-dir=/usr \
