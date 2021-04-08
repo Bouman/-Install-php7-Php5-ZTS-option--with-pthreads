@@ -57,10 +57,11 @@ rm -rf autom4te.cache/
 ./buildconf --force
 make distclean
 
-./configure --disable-fileinfo --enable-maintainer-zts --prefix=/usr --with-config-file-path=/etc --with-apxs2=/usr/bin/apxs \
+./configure --disable-fileinfo --enable-maintainer-zts --prefix=/usr --with-config-file-path=/etc --with-curl --enable-cli --with-apxs2=/usr/bin/apxs \
 --enable-mbstring \
     --enable-bcmath \
     --enable-calendar \
+    --enable-cli \
     --enable-debug \
     --enable-exif \
     --enable-fpm \
@@ -90,8 +91,10 @@ make distclean
     --disable-cgi \
     --with-jpeg-dir=/usr/include/ \
     --with-xpm-dir=/usr/include/ \
+    --with-webp-dir=/usr/include/ \
     --with-png-dir=/usr/include/ \
     --with-enchant \
+    --with-icu-dir=/usr \
     --with-gd \
     --with-curl \
     --with-jpeg-dir=/usr \
