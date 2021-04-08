@@ -112,7 +112,7 @@ CXXFLAGS="-std=c++11"
     --with-mhash \
     --with-libzip \
     --with-pcre-regex \
-    --with-openssl=/home/user/build-openssl \
+    --with-openssl \
     --with-openssl-dir=/home/user/build-openssl \
     --with-mysql-sock=/var/run/mysqld/mysqld.sock \
     --with-mysqli=mysqlnd \
