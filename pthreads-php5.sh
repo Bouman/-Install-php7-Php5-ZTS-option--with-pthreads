@@ -1,13 +1,9 @@
 #!/bin/bash
 
-#Souce list pour PHP5-dev
-#echo "deb http://security.debian.org/debian-security jessie/updates main " >> /etc/apt/sources.list
-#apt update
-#apt install php5-dev
-
-apt update
-apt upgrade
+apt-get update
+apt-get dist-upgrade
 apt-get install build-essential
+apt-get install gcc git libcurl4 curl dpkg-dev libdpkg-perl debhelper po-debconf gettext fakeroot make libncurses5-dev rpm zlib1g-dev g++ autoconf build-essential flex bison fakeroot  bc libssl-dev rsync libelf-dev xz-utils rsync
 
 # Install Apache2
 apt-get install apache2
@@ -15,6 +11,9 @@ apt-get install apache2
 # Install Mysql
 apt install mariadb-server
 mysql_secure_installation
+
+# Dependance Prérequis
+apt-get install gcc make libxml2-dev autoconf ca-certificates unzip nodejs curl libcurl4-openssl-dev pkg-config
 
 #Ajout du dépôt 
 apt install ca-certificates apt-transport-https lsb-release
@@ -24,8 +23,6 @@ echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt
 # Installation PHP5.6 (Without ZTS pthreads)
 apt update
 apt install php5.6
-# Module php5.6
-apt install php5.6-cli php5.6-common php5.6-curl php5.6-mbstring php5.6-mysql php5.6-xml
 
 #OPENSSL INSTALL v1.0.21 pour compil FOR PHP5.6 dans le dossier build-openssl
 apt-get install make 
@@ -40,30 +37,20 @@ curl https://gist.githubusercontent.com/jasny/e91f4e2d386e91e6de5cf581795e9408/r
 chmod +x icu-config
 mv icu-config /usr/bin
 
-# Deplacement à la base
-cd /
-
-#Telechargement PHP 5.6.40 + extraction et suppresion.
-wget https://www.php.net/distributions/php-5.6.40.tar.gz
-tar zxvf php-5.6.40.tar.gz
-rm -rf ext/pthreads/
-rm php-5.6.40.tar.gz
-
-#Telechargement pthreads + movement dossier
-cd php-5.6.40/ext
-git clone https://github.com/krakjoe/pthreads -b master pthreads
-cd ..
-
 #Suppression des fichier PHP actuel
 rm -rf aclocal.m4
 rm -rf autom4te.cache/
 
-#Preparation + compilation
-./buildconf --force
-make distclean
+# Deplacement à la base
+cd /
 
-CXXFLAGS="-std=c++11"
-./configure --disable-fileinfo --enable-maintainer-zts --prefix=/usr --with-config-file-path=/etc --with-curl --enable-cli --with-apxs2=/usr/bin/apxs \
+mkdir /home/install
+cd /home/install
+wget http://be2.php.net/get/php-5.6.40.tar.bz2/from/this/mirror -O php-5.6.40.tar.bz2
+tar -xjvf php-5.6.40.tar.bz2
+cd php-5.6.40
+
+./configure --disable-fileinfo --enable-maintainer-zts --prefix=/usr/local --with-config-file-path=/etc --with-curl --enable-cli --with-apxs2=/usr/bin/apxs \
 --enable-mbstring \
     --enable-bcmath \
     --enable-calendar \
@@ -123,6 +110,7 @@ CXXFLAGS="-std=c++11"
     --with-readline \
     --with-tsrm-pthreads \
     --with-xsl \
+    --with-zlib \
     --with-zlib-dir=/usr \
     --with-fpm-user=www-data \
     --with-fpm-group=www-data \
@@ -131,56 +119,20 @@ CXXFLAGS="-std=c++11"
     --with-layout=GNU \
     --disable-rpath
 
-make clear 
-make -j 4
+make
 make install
-libtool --finish /php-5.6.40/libs
-
-chmod o+x /usr/bin/phpize
-chmod o+x /usr/bin/php-config
-
-cd ext/pthreads*
-/usr/bin/phpize
-
-./configure --prefix=/usr --enable-pthreads=shared --with-php-config=/usr/bin/php-config
-make -j 4 && make install
-cd ../../
-
-#####Config PHP.INI DU SERVEUR#########
-#    nano php.ini-development         #
-# display_errors = Off ===> on        #
-# log_errors = On                     #
-# file_uploads = On                   #
-# upload_max_filesize = 2M  ====> 30M #
-# post_max_size = 8M  ====> 150M      #
-# max_execution_time = 30 ======> 120 #
-# short_open_tag ====> On             #
-# date.timezone = 'Europe/Paris'      #
-# memory_limit ====> 256M             #
-#                                     #
-#######################################
-
-cp php.ini-development /etc/php.ini
-cp php.ini-development /etc/php-cli.ini
-
-cp /etc/apache2/mods-available/php5.6.load /etc/apache2/mods-enabled/php5.6.load
-echo "<FilesMatch \.php$>
-    SetHandler application/x-httpd-php
- </FilesMatch>" >> /etc/apache2/mods-enabled/php5.6.conf
-
-#Suppression
-cd ..
-rm -rf php-5.6.40
-
-#extension on php.ini
-#echo "extension=pthreads.so" >> /etc/php-cli.ini
-#echo "zend_extension=opcache.so" >> /etc/php.ini
-
-#config
-export USE_ZEND_ALLOC=0
-
-# Time Zone Php.ini
-sed -i "s/^;date.timezone =$/date.timezone = \"Europe\/Paris\"/" /etc/php.ini |grep "^timezone" /etc/php.ini
+cd /home/install
+wget http://pecl.php.net/get/pthreads-2.0.10.tgz
+tar -xvzf pthreads-2.0.10.tgz
+cd pthreads-2.0.10
+/usr/local/bin/phpize
+./configure
+make
+make install
+echo 'date.timezone = Europe/Paris' >> /usr/local/lib/php.ini
+echo 'extension=pthreads.so' >> /usr/local/lib/php.ini
 
 #Restart apache
 systemctl status apache2.service
+php -m
+php -v
