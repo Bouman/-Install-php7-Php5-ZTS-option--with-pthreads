@@ -1,5 +1,10 @@
 #!/bin/bash
 
+#Souce list pour PHP5-dev
+#echo "deb http://security.debian.org/debian-security jessie/updates main " >> /etc/apt/sources.list
+#apt update
+#apt install php5-dev
+
 apt update
 apt upgrade
 apt-get install build-essential
