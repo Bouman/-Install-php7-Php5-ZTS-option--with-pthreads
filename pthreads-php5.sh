@@ -57,6 +57,7 @@ rm -rf autom4te.cache/
 ./buildconf --force
 make distclean
 
+CXXFLAGS="-std=c++11"
 ./configure --disable-fileinfo --enable-maintainer-zts --prefix=/usr --with-config-file-path=/etc --with-curl --enable-cli --with-apxs2=/usr/bin/apxs \
 --enable-mbstring \
     --enable-bcmath \
@@ -159,9 +160,7 @@ cp php.ini-development /etc/php.ini
 cp php.ini-development /etc/php-cli.ini
 
 cp /etc/apache2/mods-available/php5.6.load /etc/apache2/mods-enabled/php5.6.load
-echo "<FilesMatch \.php$>" >> /etc/apache2/mods-enabled/php5.6.conf
-echo "SetHandler application/x-httpd-php" >> /etc/apache2/mods-enabled/php5.6.conf
-echo "</FilesMatch>" >> /etc/apache2/mods-enabled/php5.6.conf
+echo "<FilesMatch \.php$>SetHandler application/x-httpd-php</FilesMatch>" >> /etc/apache2/mods-enabled/php5.6.conf
 
 #Suppression
 cd ..
