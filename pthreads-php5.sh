@@ -151,12 +151,14 @@ echo "<FilesMatch \.php$>
 " >> /etc/apache2/mods-enabled/php5.6.conf
 
 echo 'date.timezone = Europe/Paris' >> /usr/local/lib/php.ini
+echo 'date.timezone = Europe/Paris' >> /usr/local/lib/php-cli.ini
 
 echo "extension=pthreads.so" >> /etc/php-cli.ini
 echo 'extension=pthreads.so' >> /usr/local/lib/php.ini
 
 echo "zend_extension=opcache.so" >> /etc/php.ini
 echo 'extension=ssh2.so' >> /usr/local/lib/php.ini
+echo 'extension=ssh2.so' >> /usr/local/lib/php-cli.ini
 
 #config
 export USE_ZEND_ALLOC=0
