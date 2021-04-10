@@ -90,6 +90,7 @@ cd php-5.6.40
     --with-xpm-dir=/usr/include/ \
     --with-png-dir=/usr/include/ \
     --with-enchant \
+    --with-icu=/usr \
     --with-icu-dir=/usr \
     --with-gd \
     --with-curl \
