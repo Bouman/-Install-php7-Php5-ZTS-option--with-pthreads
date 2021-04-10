@@ -95,6 +95,7 @@ cd php-5.6.40
     --with-bz2=/usr \
     --with-gettext \
     --with-iconv-dir=/usr \
+    --with-icu-dir=/usr \
     --with-mhash \
     --with-libzip \
     --with-pcre-regex \
