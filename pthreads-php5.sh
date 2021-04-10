@@ -141,6 +141,10 @@ tar -xzvf libssh2-1.9.0.tar.gz
 cd libssh2-1.9.0
 ./configure && make all install
 
+
+cp php.ini-development /etc/php.ini
+cp php.ini-development /etc/php-cli.ini
+
 cp /etc/apache2/mods-available/php5.6.load /etc/apache2/mods-enabled/php5.6.load
 echo "<FilesMatch \.php$>
     SetHandler application/x-httpd-php
@@ -148,8 +152,12 @@ echo "<FilesMatch \.php$>
 " >> /etc/apache2/mods-enabled/php5.6.conf
 
 echo 'date.timezone = Europe/Paris' >> /usr/local/lib/php.ini
+
+echo "extension=pthreads.so" >> /etc/php-cli.ini
 echo 'extension=pthreads.so' >> /usr/local/lib/php.ini
-echo 'extension=ssh2.so' >> /usr/local/lib/php.ini
+
+echo "zend_extension=opcache.so" >> /etc/php.ini
+echo 'extension=ssh2.so' >> /usr/local/lib/php-cli.ini
 
 #config
 export USE_ZEND_ALLOC=0
