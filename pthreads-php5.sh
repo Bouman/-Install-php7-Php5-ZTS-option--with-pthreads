@@ -52,7 +52,7 @@ wget http://be2.php.net/get/php-5.6.40.tar.bz2/from/this/mirror -O php-5.6.40.ta
 tar -xjvf php-5.6.40.tar.bz2
 cd php-5.6.40
 
-./configure --disable-fileinfo --enable-maintainer-zts --prefix=/usr/local --with-config-file-path=/usr/local --with-curl --with-apxs2=/usr/bin/apxs \
+./configure --disable-fileinfo --enable-maintainer-zts --prefix=/usr/local --with-config-file-path=/usr/local --enable-cli --with-curl --with-apxs2=/usr/bin/apxs \
 --enable-mbstring \
     --enable-bcmath \
     --enable-calendar \
@@ -125,8 +125,8 @@ libtool --finish /home/install/php-5.6.40/libs
 chmod o+x /usr/local/bin/phpize
 chmod o+x /usr/local/bin/php-config
 
-cp php.ini-development /usr/local/php.ini
-cp php.ini-development /usr/local/php-cli.ini
+cp php.ini-development /etc/php.ini
+cp php.ini-development /etc/php-cli.ini
 
 cd /home/install
 wget http://pecl.php.net/get/pthreads-2.0.10.tgz
@@ -149,15 +149,15 @@ echo "<FilesMatch \.php$>
 </FilesMatch>
 " >> /etc/apache2/mods-enabled/php5.6.conf
 
-echo 'date.timezone = Europe/Paris' >> /usr/local/lib/php.ini
-echo 'date.timezone = Europe/Paris' >> /usr/local/lib/php-cli.ini
+echo 'date.timezone = Europe/Paris' >> /etc/php.ini
+echo 'date.timezone = Europe/Paris' >> /etc/php-cli.ini
 
-echo "extension=pthreads.so" >> /usr/local/lib/php-cli.ini
-echo 'extension=pthreads.so' >> /usr/local/lib/php.ini
+echo "extension=pthreads.so" >> /etc/php-cli.ini
+echo 'extension=pthreads.so' >> /etc/php.ini
 
-echo "zend_extension=opcache.so" >> /usr/local/lib/php.ini
-echo 'extension=ssh2.so' >> /usr/local/lib/php.ini
-echo 'extension=ssh2.so' >> /usr/local/lib/php-cli.ini
+echo "zend_extension=opcache.so" >> /etc/php.ini
+echo 'extension=ssh2.so' >> /etc/php.ini
+echo 'extension=ssh2.so' >> /etc/php-cli.ini
 
 #config
 export USE_ZEND_ALLOC=0
