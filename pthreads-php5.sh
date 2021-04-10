@@ -39,6 +39,7 @@ curl https://gist.githubusercontent.com/jasny/e91f4e2d386e91e6de5cf581795e9408/r
 chmod +x icu-config
 mv icu-config /usr/bin
 PHP_CPPFLAGS="$PHP_CPPFLAGS -std=c++11"
+CXXFLAGS='-std=c++11 -stdlib=libc++'
 
 #Suppression des fichier PHP actuel
 rm -rf aclocal.m4
