@@ -8,7 +8,7 @@ apt-get install gcc git libcurl4 curl dpkg-dev libdpkg-perl debhelper po-debconf
 # Install Apache2
 apt-get install apache2 apache2-dev
 apt install sqlite
-apt-get install libsqlite3-dev libbz2-dev libjpeg-dev libpng-dev libx11-dev libxpm-dev aspell php5-pspell libpspell-dev
+apt-get install libsqlite3-dev libbz2-dev libjpeg-dev libpng-dev libx11-dev libxpm-dev aspell php5-pspell libpspell-dev libedit-dev libreadline-dev
 
 # Install Mysql
 apt install mariadb-server
