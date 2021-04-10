@@ -126,6 +126,9 @@ libtool --finish /home/install/php-5.6.40/libs
 chmod o+x /usr/local/bin/phpize
 chmod o+x /usr/local/bin/php-config
 
+cp php.ini-development /etc/php.ini
+cp php.ini-development /etc/php-cli.ini
+
 cd /home/install
 wget http://pecl.php.net/get/pthreads-2.0.10.tgz
 tar -xvzf pthreads-2.0.10.tgz
@@ -140,10 +143,6 @@ wget https://www.libssh2.org/download/libssh2-1.9.0.tar.gz
 tar -xzvf libssh2-1.9.0.tar.gz
 cd libssh2-1.9.0
 ./configure && make all install
-
-
-cp php.ini-development /etc/php.ini
-cp php.ini-development /etc/php-cli.ini
 
 cp /etc/apache2/mods-available/php5.6.load /etc/apache2/mods-enabled/php5.6.load
 echo "<FilesMatch \.php$>
