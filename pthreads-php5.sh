@@ -56,7 +56,6 @@ cd php-5.6.40
 --enable-mbstring \
     --enable-bcmath \
     --enable-calendar \
-    --enable-cli \
     --enable-debug \
     --enable-exif \
     --enable-fpm \
