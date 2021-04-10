@@ -6,7 +6,9 @@ apt-get install build-essential
 apt-get install gcc git libcurl4 curl dpkg-dev libdpkg-perl debhelper po-debconf gettext fakeroot make libncurses5-dev rpm zlib1g-dev g++ autoconf build-essential flex bison fakeroot  bc libssl-dev rsync libelf-dev xz-utils rsync
 
 # Install Apache2
-apt-get install apache2
+apt-get install apache2 apache2-dev
+apt install sqlite
+apt-get install libsqlite3-dev libbz2-dev libjpeg-dev libpng-dev libx11-dev
 
 # Install Mysql
 apt install mariadb-server
@@ -121,6 +123,7 @@ cd php-5.6.40
 
 make
 make install
+
 cd /home/install
 wget http://pecl.php.net/get/pthreads-2.0.10.tgz
 tar -xvzf pthreads-2.0.10.tgz
@@ -129,6 +132,14 @@ cd pthreads-2.0.10
 ./configure
 make
 make install
+
+wget https://www.libssh2.org/download/libssh2-1.9.0.tar.gz   
+tar -xzvf libssh2-1.9.0.tar.gz
+cd libssh2-1.9.0
+./configure && make all install
+
+
+
 echo 'date.timezone = Europe/Paris' >> /usr/local/lib/php.ini
 echo 'extension=pthreads.so' >> /usr/local/lib/php.ini
 
