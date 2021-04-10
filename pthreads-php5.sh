@@ -1,5 +1,10 @@
 #!/bin/bash
 
+#Ajout du dépôt 
+apt install ca-certificates apt-transport-https lsb-release
+wget -q https://packages.sury.org/php/apt.gpg -O- | apt-key add -
+echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/php.list
+
 apt-get update
 apt-get dist-upgrade
 apt-get install build-essential
@@ -16,11 +21,6 @@ mysql_secure_installation
 
 # Dependance Prérequis
 apt-get install gcc make autoconf ca-certificates unzip nodejs curl libcurl4-openssl-dev pkg-config
-
-#Ajout du dépôt 
-apt install ca-certificates apt-transport-https lsb-release
-wget -q https://packages.sury.org/php/apt.gpg -O- | apt-key add -
-echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/php.list
 
 # Installation PHP5.6 (Without ZTS pthreads)
 apt update
@@ -86,7 +86,6 @@ cd php-5.6.40
     --with-xpm-dir=/usr/include/ \
     --with-png-dir=/usr/include/ \
     --with-enchant \
-    --with-icu-dir=/usr \
     --with-gd \
     --with-curl \
     --with-jpeg-dir=/usr \
