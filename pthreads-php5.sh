@@ -62,7 +62,6 @@ cd php-5.6.40
     --enable-fpm \
     --enable-ftp \
     --enable-hash \
-    --enable-intl \
     --enable-json \
     --enable-maintainer-zts \
     --enable-mbregex \
@@ -82,7 +81,6 @@ cd php-5.6.40
     --enable-wddx \
     --enable-zip \
     --enable-inline-optimization \
-    --enable-intl \
     --disable-cgi \
     --with-jpeg-dir=/usr/include/ \
     --with-xpm-dir=/usr/include/ \
