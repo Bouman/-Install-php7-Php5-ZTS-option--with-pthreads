@@ -38,8 +38,6 @@ ln -s x86_64-linux-gnu/curl
 curl https://gist.githubusercontent.com/jasny/e91f4e2d386e91e6de5cf581795e9408/raw/16e2c42136eb3f214222c80d492e71942b77f174/icu-config > icu-config
 chmod +x icu-config
 mv icu-config /usr/bin
-PHP_CPPFLAGS="$PHP_CPPFLAGS -std=c++11"
-CXXFLAGS='-std=c++11 -stdlib=libc++'
 
 #Suppression des fichier PHP actuel
 rm -rf aclocal.m4
@@ -90,7 +88,7 @@ cd php-5.6.40
     --with-xpm-dir=/usr/include/ \
     --with-png-dir=/usr/include/ \
     --with-enchant \
-
+    --with-icu-dir=/usr \
     --with-gd \
     --with-curl \
     --with-jpeg-dir=/usr \
