@@ -8,14 +8,14 @@ apt-get install gcc git libcurl4 curl dpkg-dev libdpkg-perl debhelper po-debconf
 # Install Apache2
 apt-get install apache2 apache2-dev
 apt install sqlite
-apt-get install libsqlite3-dev libbz2-dev libjpeg-dev libpng-dev libx11-dev libxpm-dev aspell php5-pspell libpspell-dev libedit-dev libreadline-dev
+apt-get install libsqlite3-dev libbz2-dev libjpeg-dev libpng-dev libx11-dev libxpm-dev aspell php5-pspell libpspell-dev libedit-dev libreadline-dev libxslt-dev libzip-dev libxml2-dev 
 
 # Install Mysql
 apt install mariadb-server
 mysql_secure_installation
 
 # Dependance Prérequis
-apt-get install gcc make libxml2-dev autoconf ca-certificates unzip nodejs curl libcurl4-openssl-dev pkg-config
+apt-get install gcc make autoconf ca-certificates unzip nodejs curl libcurl4-openssl-dev pkg-config
 
 #Ajout du dépôt 
 apt install ca-certificates apt-transport-https lsb-release
