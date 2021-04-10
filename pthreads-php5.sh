@@ -52,7 +52,7 @@ wget http://be2.php.net/get/php-5.6.40.tar.bz2/from/this/mirror -O php-5.6.40.ta
 tar -xjvf php-5.6.40.tar.bz2
 cd php-5.6.40
 
-./configure --disable-fileinfo --enable-maintainer-zts --prefix=/usr/local --with-config-file-path=/etc --with-curl --enable-cli --with-apxs2=/usr/bin/apxs \
+./configure --disable-fileinfo --enable-maintainer-zts --prefix=/usr/local --with-config-file-path=/etc --with-curl --with-apxs2=/usr/bin/apxs \
 --enable-mbstring \
     --enable-bcmath \
     --enable-calendar \
@@ -139,9 +139,9 @@ make
 make install
 
 cd /home/install
-wget https://www.libssh2.org/download/libssh2-1.9.0.tar.gz   
-tar -xzvf libssh2-1.9.0.tar.gz
-cd libssh2-1.9.0
+wget https://www.libssh2.org/download/libssh2-1.8.0.tar.gz   
+tar -xzvf libssh2-1.8.0.tar.gz
+cd libssh2-1.8.0
 ./configure && make all install
 
 cp /etc/apache2/mods-available/php5.6.load /etc/apache2/mods-enabled/php5.6.load
@@ -156,7 +156,7 @@ echo "extension=pthreads.so" >> /etc/php-cli.ini
 echo 'extension=pthreads.so' >> /usr/local/lib/php.ini
 
 echo "zend_extension=opcache.so" >> /etc/php.ini
-echo 'extension=ssh2.so' >> /usr/local/lib/php-cli.ini
+echo 'extension=ssh2.so' >> /usr/local/lib/php.ini
 
 #config
 export USE_ZEND_ALLOC=0
