@@ -13,7 +13,7 @@ apt-get install gcc git libcurl4 curl dpkg-dev libdpkg-perl debhelper po-debconf
 # Install Apache2
 apt-get install apache2 apache2-dev
 apt install sqlite
-apt-get install libsqlite3-dev libbz2-dev libjpeg-dev libpng-dev libx11-dev libxpm-dev aspell libpspell-dev libedit-dev libreadline-dev libxslt1-dev libzip-dev libxml2-dev 
+apt-get install libsqlite3-dev libbz2-dev libjpeg-dev libpng-dev libx11-dev libxpm-dev aspell libpspell-dev libedit-dev libreadline-dev libxslt1-dev libzip-dev libxml2-dev libtool-bin
 
 # Install Mysql
 apt install mariadb-server
@@ -121,6 +121,10 @@ cd php-5.6.40
 
 make
 make install
+libtool --finish /home/install/php-5.6.40/libs
+
+chmod o+x /usr/local/bin/phpize
+chmod o+x /usr/local/bin/php-config
 
 cd /home/install
 wget http://pecl.php.net/get/pthreads-2.0.10.tgz
@@ -131,15 +135,24 @@ cd pthreads-2.0.10
 make
 make install
 
+cd /home/install
 wget https://www.libssh2.org/download/libssh2-1.9.0.tar.gz   
 tar -xzvf libssh2-1.9.0.tar.gz
 cd libssh2-1.9.0
 ./configure && make all install
 
-
+cp /etc/apache2/mods-available/php5.6.load /etc/apache2/mods-enabled/php5.6.load
+echo "<FilesMatch \.php$>
+    SetHandler application/x-httpd-php
+</FilesMatch>
+" >> /etc/apache2/mods-enabled/php5.6.conf
 
 echo 'date.timezone = Europe/Paris' >> /usr/local/lib/php.ini
 echo 'extension=pthreads.so' >> /usr/local/lib/php.ini
+echo 'extension=ssh2.so' >> /usr/local/lib/php.ini
+
+#config
+export USE_ZEND_ALLOC=0
 
 #Restart apache
 systemctl status apache2.service
