@@ -101,7 +101,7 @@ cd php-5.6.40
     --with-mhash \
     --with-libzip \
     --with-pcre-regex \
-    --with-openssl \
+    --with-openssl=/home/user/build-openssl \
     --with-openssl-dir=/home/user/build-openssl \
     --with-mysql-sock=/var/run/mysqld/mysqld.sock \
     --with-mysqli=mysqlnd \
