@@ -137,24 +137,6 @@ cd pthreads-2.0.10
 make
 make install
 
-apt-get install libssh2-1-dev libssh2-1 php-ssh2 gcc libssl-dev php5-ssh2
-cd /home
-mkdir libssh2
-cd libssh2
-wget https://www.libssh2.org/download/libssh2-1.8.0.tar.gz   
-tar -xzvf libssh2-1.8.0.tar.gz
-cd libssh2-1.8.0
-./configure && make all install
-wget https://pecl.php.net/get/ssh2-0.13.tgz
-tar vxzf ssh2-0.11.3
-cd ssh2-0.11.3
-phpize
-./configure --with-ssh2
-make
-make install
-
-apt-get install php5.6-ssh2
-
 cp /etc/apache2/mods-available/php5.6.load /etc/apache2/mods-enabled/php5.6.load
 echo "<FilesMatch \.php$>
     SetHandler application/x-httpd-php
@@ -164,12 +146,19 @@ echo "<FilesMatch \.php$>
 echo 'date.timezone = Europe/Paris' >> /etc/php.ini
 echo 'date.timezone = Europe/Paris' >> /etc/php-cli.ini
 
-echo "extension=pthreads.so" >> /etc/php-cli.ini
-echo 'extension=pthreads.so' >> /etc/php.ini
-
 echo "zend_extension=opcache.so" >> /etc/php.ini
-echo 'extension=ssh2.so' >> /etc/php.ini
-echo 'extension=ssh2.so' >> /etc/php-cli.ini
+echo "extension=pthreads.so" >> /etc/php-cli.ini
+
+apt-get install libssh2-1-dev libssh2-1 php-ssh2 gcc libssl-dev php5.6-ssh2
+cd /home
+mkdir libssh2
+cd libssh2
+wget https://www.libssh2.org/download/libssh2-1.8.0.tar.gz   
+tar -xzvf libssh2-1.8.0.tar.gz
+cd libssh2-1.8.0
+./configure && make all install
+
+echo "extension=ssh2.so" >> /etc/php-cli.ini
 
 #config
 export USE_ZEND_ALLOC=0
