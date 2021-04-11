@@ -52,10 +52,11 @@ wget http://be2.php.net/get/php-5.6.40.tar.bz2/from/this/mirror -O php-5.6.40.ta
 tar -xjvf php-5.6.40.tar.bz2
 cd php-5.6.40
 
-./configure --disable-fileinfo --enable-maintainer-zts --prefix=/usr/local --with-config-file-path=/usr/local --enable-cli --with-curl --with-apxs2=/usr/bin/apxs \
+./configure --disable-fileinfo --enable-maintainer-zts --prefix=/usr/local --with-config-file-path=/usr/local --with-curl --with-apxs2=/usr/bin/apxs \
 --enable-mbstring \
     --enable-bcmath \
     --enable-calendar \
+    --enable-cli \
     --enable-debug \
     --enable-exif \
     --enable-fpm \
