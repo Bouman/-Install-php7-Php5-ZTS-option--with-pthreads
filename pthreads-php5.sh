@@ -24,7 +24,7 @@ apt-get install gcc make autoconf ca-certificates unzip nodejs curl libcurl4-ope
 
 # Installation PHP5.6 (Without ZTS pthreads)
 apt update
-apt install php5.6 php5.6-cli php5.6-common php5.6-curl php5.6-mbstring php5.6-mysql php5.6-xml
+apt install php5.6
 
 #OPENSSL INSTALL v1.0.21 pour compil FOR PHP5.6 dans le dossier build-openssl
 apt-get install make 
