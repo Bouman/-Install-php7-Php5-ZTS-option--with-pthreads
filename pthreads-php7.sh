@@ -3,17 +3,19 @@
 apt-get update
 apt-get dist-upgrade
 apt-get install build-essential
-apt-get install gcc git libcurl4 curl dpkg-dev libdpkg-perl debhelper po-debconf gettext fakeroot make libncurses5-dev rpm zlib1g-dev g++ autoconf build-essential flex bison fakeroot  bc libssl-dev rsync libelf-dev xz-utils rsync
+
+# Dependance Prérequis
+apt-get install autoconf make g++ gcc git curl dpkg-dev libdpkg-perl debhelper po-debconf gettext rpm flex fakeroot bc xz-utils rsync composer bison re2c
 
 # Install Apache2
-apt-get install apache2
+apt-get install apache2 apache2-dev
+
+#Librairie pour php
+apt-get install libcurl4 zlib1g-dev libcurl4-openssl-dev libncurses5-dev libbz2-dev libssl-dev libenchant-dev libedit-dev libreadline-dev libelf-dev libxslt1-dev libwebp-dev libxpm-dev libpspell-dev libonig-dev libtool-bin libsqlite3-dev libreadline-dev libzip-dev libxslt1-dev libicu-dev libmcrypt-dev libmhash-dev libpcre3-dev libjpeg-dev libfreetype6-dev libbz2-dev libxpm-dev
 
 # Install Mysql
 apt install mariadb-server
 mysql_secure_installation
-
-# Dependance Prérequis
-apt-get install build-essential composer libtool-bin apache2-dev libcurl4-openssl-dev libsqlite3-dev libreadline-dev libzip-dev libxslt1-dev libicu-dev libmcrypt-dev libmhash-dev libpcre3-dev libjpeg-dev libfreetype6-dev libbz2-dev libxpm-dev bison re2c zlib1g-dev sqlite3 libsqlite3-dev libbz2-dev libcurl4-openssl-dev libenchant-dev libonig-dev libpspell-dev libedit-dev libreadline-dev libxslt1-dev libwebp-dev libxpm-dev
 
 # Installation PHP7 (Without ZTS pthreads)
 apt-get install php7.3
