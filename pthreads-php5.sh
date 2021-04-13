@@ -40,18 +40,23 @@ curl https://gist.githubusercontent.com/jasny/e91f4e2d386e91e6de5cf581795e9408/r
 chmod +x icu-config
 mv icu-config /usr/bin
 
-#Suppression des fichier PHP actuel
-rm -rf aclocal.m4
-rm -rf autom4te.cache/
+#PEAR install
+wget http://pear.php.net/go-pear.phar && php go-pear.phar
 
-# Deplacement à la base
-cd /
-
+#Download PHP Version
 mkdir /home/install
 cd /home/install
 wget http://be2.php.net/get/php-5.6.40.tar.bz2/from/this/mirror -O php-5.6.40.tar.bz2
 tar -xjvf php-5.6.40.tar.bz2
 cd php-5.6.40
+
+#Suppression des fichier PHP actuel
+rm -rf aclocal.m4
+rm -rf autom4te.cache/
+
+#Preparation + compilation
+./buildconf --force
+make distclean
 
 ./configure --disable-fileinfo --enable-maintainer-zts --prefix=/usr/local --with-config-file-path=/usr/local --with-curl --enable-cli --with-apxs2=/usr/bin/apxs \
 --enable-mbstring \
