@@ -20,7 +20,7 @@ apt install mariadb-server
 mysql_secure_installation
 
 # Dependance Prérequis
-apt-get install gcc make autoconf ca-certificates unzip nodejs curl libcurl4-openssl-dev pkg-config
+apt-get install gcc make autoconf ca-certificates unzip nodejs curl libcurl4-openssl-dev pkg-config re2c
 
 # Installation PHP5.6 (Without ZTS pthreads)
 apt update
