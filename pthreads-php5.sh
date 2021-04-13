@@ -12,6 +12,7 @@ apt-get install gcc git libcurl4 curl dpkg-dev libdpkg-perl debhelper po-debconf
 
 # Install Apache2
 apt-get install apache2 apache2-dev
+bash -c '. /etc/apache2/envvars ; apache2'
 apt install sqlite
 apt-get install libsqlite3-dev libbz2-dev libjpeg-dev libpng-dev libx11-dev libxpm-dev aspell libpspell-dev libedit-dev libreadline-dev libxslt1-dev libzip-dev libxml2-dev libtool-bin libenchant-dev
 
