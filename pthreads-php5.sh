@@ -1,39 +1,43 @@
 #!/bin/bash
 
+export PATH=$PATH:/usr/local/sbin
+export PATH=$PATH:/usr/sbin
+export PATH=$PATH:/sbin
+
 #Ajout du dépôt 
 apt install ca-certificates apt-transport-https lsb-release
 wget -q https://packages.sury.org/php/apt.gpg -O- | apt-key add -
 echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/php.list
 
 apt-get update
-apt-get dist-upgrade
 apt-get install build-essential
-apt-get install gcc git libcurl4 curl dpkg-dev libdpkg-perl debhelper po-debconf gettext fakeroot make libncurses5-dev rpm zlib1g-dev g++ autoconf build-essential flex bison fakeroot  bc libssl-dev rsync libelf-dev xz-utils rsync
+apt autoremove
+
+# Dependance Prérequis
+apt-get install autoconf make g++ gcc git curl nodejs unzip ca-certificates dpkg-dev pkg-config libdpkg-perl debhelper po-debconf gettext rpm flex fakeroot bc xz-utils rsync composer bison re2c
 
 # Install Apache2
 apt-get install apache2 apache2-dev
-bash -c '. /etc/apache2/envvars ; apache2'
-apt install sqlite
-apt-get install libsqlite3-dev libbz2-dev libjpeg-dev libpng-dev libx11-dev libxpm-dev aspell libpspell-dev libedit-dev libreadline-dev libxslt1-dev libzip-dev libxml2-dev libtool-bin libenchant-dev
+source /etc/apache2/envvars
+/usr/sbin/apache2 -V
+
+#Librairie pour php
+apt-get install libcurl-dev libcurl4 libcurl4-gnutls-dev zlib1g-dev libcurl4-openssl-dev libncurses5-dev libbz2-dev libssl-dev libenchant-dev libedit-dev libreadline-dev libelf-dev libxslt1-dev libwebp-dev libxpm-dev libpspell-dev libonig-dev libtool-bin libsqlite3-dev libreadline-dev libzip-dev libxslt1-dev libicu-dev libmcrypt-dev libmhash-dev libpcre3-dev libjpeg-dev libfreetype6-dev libbz2-dev libxpm-dev
 
 # Install Mysql
 apt install mariadb-server
 mysql_secure_installation
-
-# Dependance Prérequis
-apt-get install gcc make autoconf ca-certificates unzip nodejs curl libcurl4-openssl-dev pkg-config re2c
 
 # Installation PHP5.6 (Without ZTS pthreads)
 apt update
 apt install php5.6
 
 #OPENSSL INSTALL v1.0.21 pour compil FOR PHP5.6 dans le dossier build-openssl
-apt-get install make 
-curl https://www.openssl.org/source/openssl-1.0.2u.tar.gz | tar xz && cd openssl-1.0.2l && ./config --prefix=/home/user/build-openssl -m64 -fPIC && make -j 4 && make -j 4 install 
+curl https://www.openssl.org/source/openssl-1.0.2u.tar.gz | tar xz && cd openssl-1.0.2u && ./config --prefix=/home/user/build-openssl -fPIC && make -j 4 && make -j 4 install 
 
 #Etre sur que curl est bien configuré
-cd /usr/include
-ln -s x86_64-linux-gnu/curl
+#cd /usr/include
+#ln -s x86_64-linux-gnu/curl
 
 #icu-config configuration
 curl https://gist.githubusercontent.com/jasny/e91f4e2d386e91e6de5cf581795e9408/raw/16e2c42136eb3f214222c80d492e71942b77f174/icu-config > icu-config
