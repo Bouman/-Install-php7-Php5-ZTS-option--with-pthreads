@@ -173,7 +173,8 @@ cd libssh2
 wget https://www.libssh2.org/download/libssh2-1.8.0.tar.gz   
 tar -xzvf libssh2-1.8.0.tar.gz
 cd libssh2-1.8.0
-./configure && make all install
+./configure --prefix=/usr/local --enable-pthreads=shared --with-php-config=/usr/local/bin/php-config
+make && make install
 
 echo "extension=ssh2.so" >> /usr/local/php-cli.ini
 
