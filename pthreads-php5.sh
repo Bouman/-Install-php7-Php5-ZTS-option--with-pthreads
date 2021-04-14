@@ -121,6 +121,7 @@ rm -rf autom4te.cache/
     --with-mysql-sock=/var/run/mysqld/mysqld.sock \
     --with-mysqli=mysqlnd \
     --with-sqlite3=/usr \
+    --with-mysql \
     --with-pdo-mysql=mysqlnd \
     --with-pdo-sqlite=/usr \
     --with-pspell \
