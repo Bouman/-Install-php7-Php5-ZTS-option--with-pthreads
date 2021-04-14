@@ -4,9 +4,6 @@ export PATH=$PATH:/usr/local/sbin
 export PATH=$PATH:/usr/sbin
 export PATH=$PATH:/sbin
 
-# Efface tte les version php 
-apt purge --autoremove \*php\*
-
 #Ajout du dépôt 
 apt install -y ca-certificates apt-transport-https lsb-release
 wget -q https://packages.sury.org/php/apt.gpg -O- | apt-key add -
@@ -51,6 +48,11 @@ mv icu-config /usr/bin
 #PEAR install
 cd /
 wget http://pear.php.net/go-pear.phar && php go-pear.phar
+
+#Restart apache
+systemctl status apache2.service
+php -m
+php -v
 
 #Download PHP Version
 mkdir /home/install
