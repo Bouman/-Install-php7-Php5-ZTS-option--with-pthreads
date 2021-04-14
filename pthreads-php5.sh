@@ -164,7 +164,7 @@ echo 'date.timezone = Europe/Paris' >> /usr/local/php-cli.ini
 echo "zend_extension=opcache.so" >> /usr/local/php.ini
 echo "extension=pthreads.so" >> /usr/local/php-cli.ini
 
-apt-get install -y libssh2-1-dev libssh2-1 php-ssh2 gcc libssl-dev php5.6-ssh2
+apt-get install -y libssh2-1 libssh2-1-dev libssl-dev php5.6-ssh2
 cd /home
 mkdir libssh2
 cd libssh2
@@ -177,10 +177,6 @@ echo "extension=ssh2.so" >> /usr/local/php-cli.ini
 
 #config
 export USE_ZEND_ALLOC=0
-
-apt-get purge php6.*
-apt-get purge php7.*
-apt-get purge php8.*
 
 #Restart apache
 systemctl status apache2.service
