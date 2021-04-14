@@ -49,6 +49,7 @@ chmod +x icu-config
 mv icu-config /usr/bin
 
 #PEAR install
+cd /
 wget http://pear.php.net/go-pear.phar && php go-pear.phar
 
 #Download PHP Version
