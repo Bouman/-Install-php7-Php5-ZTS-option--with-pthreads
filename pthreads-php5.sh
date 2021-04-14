@@ -13,6 +13,9 @@ apt-get update
 apt-get install build-essential
 apt autoremove
 
+# Efface tte les version php 
+apt purge --autoremove \*php\*
+
 # Dependance Prérequis
 apt-get install autoconf make g++ gcc git curl nodejs unzip ca-certificates sqlite dpkg-dev pkg-config libdpkg-perl debhelper po-debconf gettext rpm flex fakeroot bc xz-utils rsync composer bison re2c
 
@@ -27,9 +30,6 @@ apt-get install libcurl-dev libcurl4 libcurl4-gnutls-dev zlib1g-dev libcurl4-ope
 # Install Mysql
 apt install mariadb-server
 mysql_secure_installation
-
-# Efface tte les version php 
-apt purge --autoremove \*php\*
 
 # Installation PHP5.6 (Without ZTS pthreads)
 apt update
