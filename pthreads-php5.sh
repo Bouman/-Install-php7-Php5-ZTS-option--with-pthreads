@@ -178,6 +178,10 @@ echo "extension=ssh2.so" >> /usr/local/php-cli.ini
 #config
 export USE_ZEND_ALLOC=0
 
+apt-get purge php6.*
+apt-get purge php7.*
+apt-get purge php8.*
+
 #Restart apache
 systemctl status apache2.service
 php -m
