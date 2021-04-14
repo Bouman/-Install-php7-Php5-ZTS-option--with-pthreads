@@ -50,7 +50,7 @@ chmod +x icu-config
 mv icu-config /usr/bin
 
 #Restart apache
-systemctl status apache2.service
+systemctl restart apache2.service
 php -m
 php -v
 
@@ -172,6 +172,6 @@ echo "extension=pthreads.so" >> /usr/local/php-cli.ini
 export USE_ZEND_ALLOC=0
 
 #Restart apache
-systemctl status apache2.service
+systemctl restart apache2.service
 php -m
 php -v
