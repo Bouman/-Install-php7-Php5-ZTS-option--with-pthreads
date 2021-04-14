@@ -168,18 +168,6 @@ echo 'date.timezone = Europe/Paris' >> /usr/local/php-cli.ini
 echo "zend_extension=opcache.so" >> /usr/local/php.ini
 echo "extension=pthreads.so" >> /usr/local/php-cli.ini
 
-apt-get install -y libssh2-1 libssh2-1-dev libssl-dev php5.6-ssh2
-cd /home
-mkdir libssh2
-cd libssh2
-wget https://www.libssh2.org/download/libssh2-1.8.0.tar.gz   
-tar -xzvf libssh2-1.8.0.tar.gz
-cd libssh2-1.8.0
-./configure --prefix=/usr/local --enable-pthreads=shared --with-php-config=/usr/local/bin/php-config
-make && make install
-
-echo "extension=ssh2.so" >> /usr/local/php-cli.ini
-
 #config
 export USE_ZEND_ALLOC=0
 
