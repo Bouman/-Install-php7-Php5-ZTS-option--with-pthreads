@@ -25,7 +25,7 @@ source /etc/apache2/envvars
 /usr/sbin/apache2 -V
 
 #Librairie pour php
-apt-get install libcurl-dev libcurl4 libcurl4-gnutls-dev zlib1g-dev libcurl4-openssl-dev libncurses5-dev libbz2-dev libssl-dev libenchant-dev libedit-dev libreadline-dev libelf-dev libxslt1-dev libwebp-dev libxpm-dev libpspell-dev libonig-dev libtool-bin libsqlite3-dev libreadline-dev libzip-dev libxslt1-dev libicu-dev libmcrypt-dev libmhash-dev libpcre3-dev libjpeg-dev libfreetype6-dev libbz2-dev libxpm-dev install libxml2-dev 
+apt-get install libcurl4 libcurl4-gnutls-dev zlib1g-dev libcurl4-openssl-dev libncurses5-dev libbz2-dev libssl-dev libenchant-dev libedit-dev libreadline-dev libelf-dev libxslt1-dev libwebp-dev libxpm-dev libpspell-dev libonig-dev libtool-bin libsqlite3-dev libreadline-dev libzip-dev libxslt1-dev libicu-dev libmcrypt-dev libmhash-dev libpcre3-dev libjpeg-dev libfreetype6-dev libbz2-dev libxpm-dev install libxml2-dev
 
 # Install Mysql
 apt install mariadb-server
