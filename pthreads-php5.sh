@@ -8,33 +8,33 @@ export PATH=$PATH:/sbin
 apt purge --autoremove \*php\*
 
 #Ajout du dépôt 
-apt install ca-certificates apt-transport-https lsb-release
+apt install -y ca-certificates apt-transport-https lsb-release
 wget -q https://packages.sury.org/php/apt.gpg -O- | apt-key add -
 echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/php.list
 
 apt-get update
-apt-get install build-essential
+apt-get install -y build-essential
 apt autoremove
 
 # Dependance Prérequis
-apt-get install autoconf make g++ gcc git curl nodejs unzip ca-certificates sqlite dpkg-dev pkg-config libdpkg-perl debhelper po-debconf gettext rpm flex fakeroot bc xz-utils rsync composer bison re2c
+apt-get install -y autoconf make g++ gcc git curl nodejs unzip sqlite dpkg-dev pkg-config libdpkg-perl debhelper po-debconf gettext rpm flex fakeroot bc xz-utils rsync composer bison re2c
 
 # Install Apache2
-apt-get install apache2 apache2-dev
+apt-get install -y apache2 apache2-dev
 source /etc/apache2/envvars
 /usr/sbin/apache2 -V
 
 #Librairie pour php
-apt-get install libcurl4 libcurl4-openssl-dev  zlib1g-dev libncurses5-dev libbz2-dev libssl-dev libenchant-dev libedit-dev libreadline-dev libelf-dev libxslt1-dev libwebp-dev libxpm-dev libpspell-dev libonig-dev libtool-bin libsqlite3-dev libreadline-dev libzip-dev libxslt1-dev libicu-dev libmcrypt-dev libmhash-dev libpcre3-dev libjpeg-dev libfreetype6-dev libbz2-dev libxpm-dev libxml2-dev
+apt-get install -y libcurl4 libcurl4-openssl-dev  zlib1g-dev libncurses5-dev libbz2-dev libssl-dev libenchant-dev libedit-dev libreadline-dev libelf-dev libxslt1-dev libwebp-dev libxpm-dev libpspell-dev libonig-dev libtool-bin libsqlite3-dev libreadline-dev libzip-dev libxslt1-dev libicu-dev libmcrypt-dev libmhash-dev libpcre3-dev libjpeg-dev libfreetype6-dev libbz2-dev libxpm-dev libxml2-dev
 #libcurl4-gnutls-dev
 
 # Install Mysql
-apt install mariadb-server
+apt install -y mariadb-server
 mysql_secure_installation
 
 # Installation PHP5.6 (Without ZTS pthreads)
 apt update
-apt install php5.6 php5.6-xml
+apt install -y php5.6 php5.6-xml
 
 #OPENSSL INSTALL v1.0.21 pour compil FOR PHP5.6 dans le dossier build-openssl
 curl https://www.openssl.org/source/openssl-1.0.2u.tar.gz | tar xz && cd openssl-1.0.2u && ./config --prefix=/home/user/build-openssl -fPIC && make -j 4 && make -j 4 install 
@@ -164,7 +164,7 @@ echo 'date.timezone = Europe/Paris' >> /usr/local/php-cli.ini
 echo "zend_extension=opcache.so" >> /usr/local/php.ini
 echo "extension=pthreads.so" >> /usr/local/php-cli.ini
 
-apt-get install libssh2-1-dev libssh2-1 php-ssh2 gcc libssl-dev php5.6-ssh2
+apt-get install -y libssh2-1-dev libssh2-1 php-ssh2 gcc libssl-dev php5.6-ssh2
 cd /home
 mkdir libssh2
 cd libssh2
