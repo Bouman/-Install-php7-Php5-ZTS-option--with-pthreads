@@ -14,7 +14,7 @@ apt-get install build-essential
 apt autoremove
 
 # Dependance Prérequis
-apt-get install autoconf make g++ gcc git curl nodejs unzip ca-certificates dpkg-dev pkg-config libdpkg-perl debhelper po-debconf gettext rpm flex fakeroot bc xz-utils rsync composer bison re2c
+apt-get install autoconf make g++ gcc git curl nodejs unzip ca-certificates sqlite dpkg-dev pkg-config libdpkg-perl debhelper po-debconf gettext rpm flex fakeroot bc xz-utils rsync composer bison re2c
 
 # Install Apache2
 apt-get install apache2 apache2-dev
@@ -22,7 +22,7 @@ source /etc/apache2/envvars
 /usr/sbin/apache2 -V
 
 #Librairie pour php
-apt-get install libcurl-dev libcurl4 libcurl4-gnutls-dev zlib1g-dev libcurl4-openssl-dev libncurses5-dev libbz2-dev libssl-dev libenchant-dev libedit-dev libreadline-dev libelf-dev libxslt1-dev libwebp-dev libxpm-dev libpspell-dev libonig-dev libtool-bin libsqlite3-dev libreadline-dev libzip-dev libxslt1-dev libicu-dev libmcrypt-dev libmhash-dev libpcre3-dev libjpeg-dev libfreetype6-dev libbz2-dev libxpm-dev
+apt-get install libcurl-dev libcurl4 libcurl4-gnutls-dev zlib1g-dev libcurl4-openssl-dev libncurses5-dev libbz2-dev libssl-dev libenchant-dev libedit-dev libreadline-dev libelf-dev libxslt1-dev libwebp-dev libxpm-dev libpspell-dev libonig-dev libtool-bin libsqlite3-dev libreadline-dev libzip-dev libxslt1-dev libicu-dev libmcrypt-dev libmhash-dev libpcre3-dev libjpeg-dev libfreetype6-dev libbz2-dev libxpm-dev install libxml2-dev 
 
 # Install Mysql
 apt install mariadb-server
@@ -63,7 +63,7 @@ rm -rf autom4te.cache/
 
 #Preparation + compilation
 ./buildconf --force
-make distclean
+#make distclean
 
 ./configure --disable-fileinfo --enable-maintainer-zts --prefix=/usr/local --with-config-file-path=/usr/local --with-curl --enable-cli --with-apxs2=/usr/bin/apxs \
 --enable-mbstring \
