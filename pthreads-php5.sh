@@ -28,6 +28,9 @@ apt-get install libcurl-dev libcurl4 libcurl4-gnutls-dev zlib1g-dev libcurl4-ope
 apt install mariadb-server
 mysql_secure_installation
 
+# Efface tte les version php 
+apt purge --autoremove \*php\*
+
 # Installation PHP5.6 (Without ZTS pthreads)
 apt update
 apt install php5.6
