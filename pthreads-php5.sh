@@ -69,11 +69,12 @@ rm -rf autom4te.cache/
 ./buildconf --force
 #make distclean
 
-./configure --disable-fileinfo --enable-maintainer-zts --prefix=/usr/local --with-config-file-path=/usr/local --with-curl --enable-cli --with-apxs2=/usr/bin/apxs \
+./configure --disable-fileinfo --enable-maintainer-zts --prefix=/usr/local --with-config-file-path=/usr/local --with-apxs2=/usr/bin/apxs \
 --enable-mbstring \
     --enable-bcmath \
     --enable-calendar \
     --enable-cli \
+    --with-curl \
     --enable-debug \
     --enable-exif \
     --enable-fpm \
