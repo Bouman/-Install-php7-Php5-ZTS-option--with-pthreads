@@ -4,6 +4,9 @@ export PATH=$PATH:/usr/local/sbin
 export PATH=$PATH:/usr/sbin
 export PATH=$PATH:/sbin
 
+# Efface tte les version php 
+apt purge --autoremove \*php\*
+
 #Ajout du dépôt 
 apt install ca-certificates apt-transport-https lsb-release
 wget -q https://packages.sury.org/php/apt.gpg -O- | apt-key add -
@@ -12,9 +15,6 @@ echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt
 apt-get update
 apt-get install build-essential
 apt autoremove
-
-# Efface tte les version php 
-apt purge --autoremove \*php\*
 
 # Dependance Prérequis
 apt-get install autoconf make g++ gcc git curl nodejs unzip ca-certificates sqlite dpkg-dev pkg-config libdpkg-perl debhelper po-debconf gettext rpm flex fakeroot bc xz-utils rsync composer bison re2c
@@ -25,7 +25,8 @@ source /etc/apache2/envvars
 /usr/sbin/apache2 -V
 
 #Librairie pour php
-apt-get install libcurl4 libcurl4-gnutls-dev zlib1g-dev libcurl4-openssl-dev libncurses5-dev libbz2-dev libssl-dev libenchant-dev libedit-dev libreadline-dev libelf-dev libxslt1-dev libwebp-dev libxpm-dev libpspell-dev libonig-dev libtool-bin libsqlite3-dev libreadline-dev libzip-dev libxslt1-dev libicu-dev libmcrypt-dev libmhash-dev libpcre3-dev libjpeg-dev libfreetype6-dev libbz2-dev libxpm-dev install libxml2-dev
+apt-get install libcurl4 libcurl4-openssl-dev  zlib1g-dev libncurses5-dev libbz2-dev libssl-dev libenchant-dev libedit-dev libreadline-dev libelf-dev libxslt1-dev libwebp-dev libxpm-dev libpspell-dev libonig-dev libtool-bin libsqlite3-dev libreadline-dev libzip-dev libxslt1-dev libicu-dev libmcrypt-dev libmhash-dev libpcre3-dev libjpeg-dev libfreetype6-dev libbz2-dev libxpm-dev libxml2-dev
+#libcurl4-gnutls-dev
 
 # Install Mysql
 apt install mariadb-server
@@ -33,14 +34,14 @@ mysql_secure_installation
 
 # Installation PHP5.6 (Without ZTS pthreads)
 apt update
-apt install php5.6
+apt install php5.6 php5.6-xml
 
 #OPENSSL INSTALL v1.0.21 pour compil FOR PHP5.6 dans le dossier build-openssl
 curl https://www.openssl.org/source/openssl-1.0.2u.tar.gz | tar xz && cd openssl-1.0.2u && ./config --prefix=/home/user/build-openssl -fPIC && make -j 4 && make -j 4 install 
 
 #Etre sur que curl est bien configuré
-#cd /usr/include
-#ln -s x86_64-linux-gnu/curl
+cd /usr/include
+ln -s x86_64-linux-gnu/curl
 
 #icu-config configuration
 curl https://gist.githubusercontent.com/jasny/e91f4e2d386e91e6de5cf581795e9408/raw/16e2c42136eb3f214222c80d492e71942b77f174/icu-config > icu-config
