@@ -151,9 +151,8 @@ wget http://pecl.php.net/get/pthreads-2.0.10.tgz
 tar -xvzf pthreads-2.0.10.tgz
 cd pthreads-2.0.10
 /usr/local/bin/phpize
-./configure
-make
-make install
+./configure --prefix=/usr/local --enable-pthreads=shared --with-php-config=/usr/local/bin/php-config
+make && make install
 
 cp /etc/apache2/mods-available/php5.6.load /etc/apache2/mods-enabled/php5.6.load
 echo "<FilesMatch \.php$>
