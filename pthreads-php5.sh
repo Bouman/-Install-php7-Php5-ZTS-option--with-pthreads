@@ -16,13 +16,17 @@ apt-get update
 apt-get install -y build-essential
 apt autoremove
 
-# Dependance Prérequis
-apt-get install -y autoconf make g++ gcc git curl nodejs unzip sqlite dpkg-dev pkg-config libdpkg-perl debhelper po-debconf gettext rpm flex fakeroot bc xz-utils rsync composer bison re2c
+# Installation PHP5.6 (Without ZTS pthreads)
+apt update
+apt install -y php5.6 php5.6-xml
 
 # Install Apache2
 apt-get install -y apache2 apache2-dev
 source /etc/apache2/envvars
 /usr/sbin/apache2 -V
+
+# Dependance Prérequis
+apt-get install -y autoconf make g++ gcc git curl nodejs unzip sqlite dpkg-dev pkg-config libdpkg-perl debhelper po-debconf gettext rpm flex fakeroot bc xz-utils rsync bison re2c
 
 #Librairie pour php
 apt-get install -y libcurl4 libcurl4-openssl-dev  zlib1g-dev libncurses5-dev libbz2-dev libssl-dev libenchant-dev libedit-dev libreadline-dev libelf-dev libxslt1-dev libwebp-dev libxpm-dev libpspell-dev libonig-dev libtool-bin libsqlite3-dev libreadline-dev libzip-dev libxslt1-dev libicu-dev libmcrypt-dev libmhash-dev libpcre3-dev libjpeg-dev libfreetype6-dev libbz2-dev libxpm-dev libxml2-dev
@@ -31,10 +35,6 @@ apt-get install -y libcurl4 libcurl4-openssl-dev  zlib1g-dev libncurses5-dev lib
 # Install Mysql
 apt install -y mariadb-server
 mysql_secure_installation
-
-# Installation PHP5.6 (Without ZTS pthreads)
-apt update
-apt install -y php5.6 php5.6-xml
 
 #OPENSSL INSTALL v1.0.21 pour compil FOR PHP5.6 dans le dossier build-openssl
 curl https://www.openssl.org/source/openssl-1.0.2u.tar.gz | tar xz && cd openssl-1.0.2u && ./config --prefix=/home/user/build-openssl -fPIC && make -j 4 && make -j 4 install 
@@ -133,8 +133,8 @@ rm -rf autom4te.cache/
     --with-layout=GNU \
     --disable-rpath
 
-make
-make install
+make -j 4
+make -j 4 install
 libtool --finish /home/install/php-5.6.40/libs
 
 chmod o+x /usr/local/bin/phpize
