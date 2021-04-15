@@ -99,7 +99,7 @@ rm -rf autom4te.cache
     --with-icu-dir=/usr/lib/x86_64-linux-gnu \
     --with-mhash=/usr/include \
     --with-libzip=/usr/lib/x86_64-linux-gnu \
-    --with-pcre-regex=/usr/lib/x86_64-linux-gnu \
+    --with-pcre-regex=/usr/include \
     --with-pcre-dir=/usr/include \
     --with-openssl \
     --with-openssl-dir=/home/user/build-openssl \
