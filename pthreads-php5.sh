@@ -115,8 +115,7 @@ rm -rf autom4te.cache/
     --with-fpm-user=respawn \
     --config-cache \
     --localstatedir=/usr/local/var \
-    --with-layout=PHP \
-    --enable-roxen-zts
+    --with-layout=PHP
     
 make -j 4
 make -j 4 install
