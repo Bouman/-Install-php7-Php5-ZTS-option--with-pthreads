@@ -23,7 +23,7 @@ source /etc/apache2/envvars
 /usr/sbin/apache2 -V
 
 # Install Mysql
-apt install -y mariadb-server
+apt install -y mariadb-server libmariadb-dev-compat libmariadb-dev
 mysql_secure_installation
 
 # Dependance Prérequis
@@ -107,9 +107,9 @@ rm -rf autom4te.cache
     --with-openssl \
     --with-openssl-dir=/home/user/build-openssl \
     --with-mysql-sock \
-    --with-mysqli=/usr/bin \
-    --with-mysql=/usr/bin \
-    --with-pdo-mysql=/usr/bin \
+    --with-mysqli \
+    --with-mysql \
+    --with-pdo-mysql \
     --with-pspell=/usr/include \
     --with-readline=/usr/include \
     --with-tsrm-pthreads \
