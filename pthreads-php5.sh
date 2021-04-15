@@ -42,6 +42,10 @@ curl https://gist.githubusercontent.com/jasny/e91f4e2d386e91e6de5cf581795e9408/r
 chmod +x icu-config
 mv icu-config /usr/bin
 
+#Etre sur que curl est bien configuré
+cd /usr/include
+ln -s x86_64-linux-gnu/curl
+
 #Restart apache
 systemctl restart apache2.service
 php -m
@@ -91,7 +95,7 @@ rm -rf autom4te.cache
     --with-jpeg-dir=/usr/include \
     --with-xpm-dir=/usr/include \
     --with-png-dir=/usr/include \
-    --with-enchant=/usr/bin \
+    --with-enchant=/usr/lib/x86_64-linux-gnu \
     --with-gd=/usr/include \
     --with-bz2=/usr/bin \
     --with-gettext=/usr/bin \
