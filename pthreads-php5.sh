@@ -14,46 +14,47 @@ apt-get update
 apt-get install -y build-essential
 apt autoremove
 
-# Installation PHP5.6 (Without ZTS pthreads)
-apt install -y php5.6 php5.6-xml php5.6-gd
+# Dependance Prérequis
+apt-get install -y autoconf make g++ gcc git curl nodejs unzip sqlite dpkg-dev pkg-config libdpkg-perl debhelper po-debconf gettext rpm flex fakeroot bc xz-utils rsync bison re2c
 
 # Install Apache2
 apt-get install -y apache2 apache2-dev
 source /etc/apache2/envvars
 /usr/sbin/apache2 -V
 
-# Install Mysql
-apt install -y mariadb-server libmariadb-dev-compat libmariadb-dev
-mysql_secure_installation
-
-# Dependance Prérequis
-apt-get install -y autoconf make g++ gcc git curl nodejs unzip sqlite dpkg-dev pkg-config libdpkg-perl debhelper po-debconf gettext rpm flex fakeroot bc xz-utils rsync bison re2c
-
 #Librairie pour php
 apt-get install -y libcurl4 libcurl4-gnutls-dev zlib1g-dev libncurses5-dev libbz2-dev libssl-dev libenchant-dev libedit-dev libreadline-dev libelf-dev libxslt1-dev libwebp-dev libxpm-dev libpspell-dev libonig-dev libtool-bin libsqlite3-dev libreadline-dev libzip-dev libxslt1-dev libicu-dev libmcrypt-dev libmhash-dev libpcre3-dev libjpeg-dev libfreetype6-dev libbz2-dev libxpm-dev libxml2-dev
 apt-get install -y libcurl4-openssl-dev libsasl2-dev
 
-#PEAR install
-#cd /
-#wget http://pear.php.net/go-pear.phar && php go-pear.phar
+# Install Mysql
+apt install -y mariadb-server libmariadb-dev-compat libmariadb-dev
+mysql_secure_installation
+
+# Installation PHP5.6 (Without ZTS pthreads)
+apt install -y php5.6 php5.6-xml php5.6-gd
+
+#OPENSSL INSTALL v1.0.21 + CURL pour compil FOR PHP5.6 dans le dossier build-openssl
+cd /
+curl https://www.openssl.org/source/openssl-1.0.2u.tar.gz | tar xz && cd openssl-1.0.2u && ./config -fPIC shared -m64 --prefix=/home/user/build-openssl && make -j$(nproc) && make -j$(nproc) install 
+apt-get update
+
+#Etre sur que curl est bien configuré
+cd /usr/include
+ln -s x86_64-linux-gnu/curl
 
 #icu-config configuration
 curl https://gist.githubusercontent.com/jasny/e91f4e2d386e91e6de5cf581795e9408/raw/16e2c42136eb3f214222c80d492e71942b77f174/icu-config > icu-config
 chmod +x icu-config
 mv icu-config /usr/bin
 
-#Etre sur que curl est bien configuré
-cd /usr/include
-ln -s x86_64-linux-gnu/curl
+#PEAR install
+cd /
+wget http://pear.php.net/go-pear.phar && php go-pear.phar
 
 #Restart apache
 systemctl restart apache2.service
 php -m
 php -v
-
-#OPENSSL INSTALL v1.0.21 + CURL pour compil FOR PHP5.6 dans le dossier build-openssl
-cd /
-curl https://www.openssl.org/source/openssl-1.0.2u.tar.gz | tar xz && cd openssl-1.0.2u && ./config -fPIC shared -m64 --prefix=/home/user/build-openssl && make -j$(nproc) && make -j$(nproc) install 
 
 #Download PHP Version
 cd /home/install
