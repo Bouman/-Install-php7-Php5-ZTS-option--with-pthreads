@@ -59,7 +59,7 @@ cd php-5.6.40
 
 #Suppression des fichier PHP actuel
 rm -rf aclocal.m4
-rm -rf autom4te.cache/
+rm -rf autom4te.cache
 
 #Preparation + compilation
 ./buildconf --force
