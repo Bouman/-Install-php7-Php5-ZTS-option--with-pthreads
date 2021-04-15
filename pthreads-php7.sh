@@ -52,7 +52,7 @@ rm -rf autom4te.cache/
 
 #Preparation + compilation
 ./buildconf --force
-make distclean
+make -j$(nproc) distclean
 
 ./configure --disable-fileinfo --enable-maintainer-zts --prefix=/usr --with-config-file-path=/etc --with-curl --enable-cli --with-apxs2=/usr/bin/apxs \
 --enable-mbstring \
@@ -123,9 +123,9 @@ make distclean
     --with-layout=GNU \
     --disable-rpath
 
-make clear 
-make -j 4
-make install
+make -j$(nproc) clear 
+make -j$(nproc)
+make -j$(nproc) install
 libtool --finish /php-7.3.27/libs
 
 chmod o+x /usr/bin/phpize
@@ -135,7 +135,7 @@ cd ext/pthreads*
 /usr/bin/phpize
 
 ./configure --prefix=/usr --enable-pthreads=shared --with-php-config=/usr/bin/php-config
-make && make install
+make -j$(nproc) && make -j$(nproc) install
 cd ../../
 
 #####Config PHP.INI DU SERVEUR#########
