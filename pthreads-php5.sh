@@ -1,8 +1,9 @@
 #!/bin/bash
-
 export PATH=$PATH:/usr/local/sbin
 export PATH=$PATH:/usr/sbin
 export PATH=$PATH:/sbin
+
+mkdir /home/install
 
 #Ajout du dépôt 
 apt install -y ca-certificates apt-transport-https lsb-release
@@ -50,12 +51,11 @@ systemctl restart apache2.service
 php -m
 php -v
 
-#OPENSSL INSTALL v1.0.21 pour compil FOR PHP5.6 dans le dossier build-openssl
+#OPENSSL INSTALL v1.0.21 + CURL pour compil FOR PHP5.6 dans le dossier build-openssl
 cd /
-curl https://www.openssl.org/source/openssl-1.0.2u.tar.gz | tar xz && cd openssl-1.0.2u && ./config --prefix=/home/user/build-openssl -m64 -fPIC && make -j 4 && make -j 4 install 
+curl https://www.openssl.org/source/openssl-1.0.2u.tar.gz | tar xz && cd openssl-1.0.2u && ./config -fPIC shared -m64 --prefix=/home/user/build-openssl && make -j$(nproc) && make -j$(nproc) install 
 
 #Download PHP Version
-mkdir /home/install
 cd /home/install
 wget http://be2.php.net/get/php-5.6.40.tar.bz2/from/this/mirror -O php-5.6.40.tar.bz2
 tar -xjvf php-5.6.40.tar.bz2
@@ -104,6 +104,7 @@ rm -rf autom4te.cache
     --with-mhash=/usr/include \
     --with-libzip=/usr/lib/x86_64-linux-gnu \
     --with-pcre-regex \
+    --with-openssl=/home/user/build-openssl \
     --with-openssl-dir=/home/user/build-openssl \
     --with-mysql-sock \
     --with-mysqli \
@@ -121,8 +122,8 @@ rm -rf autom4te.cache
     --localstatedir=/usr/local/var \
     --with-layout=PHP
     
-make -j 4
-make -j 4 install
+make -j$(nproc)
+make -j$(nproc) install
 libtool --finish /home/install/php-5.6.40/libs
 
 chmod o+x /usr/local/bin/phpize
@@ -137,7 +138,7 @@ tar -xvzf pthreads-2.0.10.tgz
 cd pthreads-2.0.10
 /usr/local/bin/phpize
 ./configure --prefix=/usr/local --enable-pthreads=shared --with-php-config=/usr/local/bin/php-config
-make && make install
+make -j$(nproc) && make -j$(nproc) install
 
 cp /etc/apache2/mods-available/php5.6.load /etc/apache2/mods-enabled/php5.6.load
 echo "<FilesMatch \.php$>
