@@ -95,7 +95,7 @@ rm -rf autom4te.cache
     --with-jpeg-dir=/usr/include \
     --with-xpm-dir=/usr/include \
     --with-png-dir=/usr/include \
-    --with-enchant=/usr/lib/x86_64-linux-gnu \
+    --with-enchant \
     --with-gd=/usr/include \
     --with-bz2=/usr/bin \
     --with-gettext=/usr/bin \
