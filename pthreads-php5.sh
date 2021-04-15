@@ -14,7 +14,6 @@ apt-get install -y build-essential
 apt autoremove
 
 # Installation PHP5.6 (Without ZTS pthreads)
-apt update
 apt install -y php5.6 php5.6-xml php5.6-gd
 
 # Install Apache2
@@ -30,8 +29,8 @@ mysql_secure_installation
 apt-get install -y autoconf make g++ gcc git curl nodejs unzip sqlite dpkg-dev pkg-config libdpkg-perl debhelper po-debconf gettext rpm flex fakeroot bc xz-utils rsync bison re2c
 
 #Librairie pour php
-apt-get install -y libcurl4 libcurl4-openssl-dev  zlib1g-dev libncurses5-dev libbz2-dev libssl-dev libenchant-dev libedit-dev libreadline-dev libelf-dev libxslt1-dev libwebp-dev libxpm-dev libpspell-dev libonig-dev libtool-bin libsqlite3-dev libreadline-dev libzip-dev libxslt1-dev libicu-dev libmcrypt-dev libmhash-dev libpcre3-dev libjpeg-dev libfreetype6-dev libbz2-dev libxpm-dev libxml2-dev
-#libcurl4-gnutls-dev
+apt-get install -y libcurl4 libcurl4-gnutls-dev zlib1g-dev libncurses5-dev libbz2-dev libssl-dev libenchant-dev libedit-dev libreadline-dev libelf-dev libxslt1-dev libwebp-dev libxpm-dev libpspell-dev libonig-dev libtool-bin libsqlite3-dev libreadline-dev libzip-dev libxslt1-dev libicu-dev libmcrypt-dev libmhash-dev libpcre3-dev libjpeg-dev libfreetype6-dev libbz2-dev libxpm-dev libxml2-dev
+apt-get install -y libcurl4-openssl-dev libsasl2-dev
 
 #PEAR install
 #cd /
@@ -52,6 +51,7 @@ php -m
 php -v
 
 #OPENSSL INSTALL v1.0.21 pour compil FOR PHP5.6 dans le dossier build-openssl
+cd /
 curl https://www.openssl.org/source/openssl-1.0.2u.tar.gz | tar xz && cd openssl-1.0.2u && ./config --prefix=/home/user/build-openssl -m64 -fPIC && make -j 4 && make -j 4 install 
 
 #Download PHP Version
@@ -69,7 +69,7 @@ rm -rf autom4te.cache
 ./buildconf --force
 #make distclean
 
-./configure --enable-maintainer-zts --prefix=/usr/local --with-config-file-path=/usr/local/lib --with-libdir=lib64 \
+./configure --enable-maintainer-zts --prefix=/usr/local --with-config-file-path=/usr/local/lib --with-libdir=lib/x86_64-linux-gnu \
     --with-apxs2=/usr/bin/apxs \
     --enable-mbstring \
     --enable-bcmath \
