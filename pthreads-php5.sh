@@ -35,7 +35,7 @@ apt install -y php5.6 php5.6-xml php5.6-gd
 
 #OPENSSL INSTALL v1.0.21 + CURL pour compil FOR PHP5.6 dans le dossier build-openssl
 cd /
-curl https://www.openssl.org/source/openssl-1.0.2u.tar.gz | tar xz && cd openssl-1.0.2u && ./config -fPIC shared -m64 --prefix=/home/user/build-openssl && make -j$(nproc) && make -j$(nproc) install 
+curl https://www.openssl.org/source/openssl-1.0.2u.tar.gz | tar xz && cd openssl-1.0.2u && ./config -fPIC -m64 --prefix=/home/user/build-openssl && make -j$(nproc) && make -j$(nproc) install 
 apt-get update
 
 #Etre sur que curl est bien configuré
