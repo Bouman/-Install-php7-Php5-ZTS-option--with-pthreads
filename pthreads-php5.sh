@@ -99,8 +99,7 @@ rm -rf autom4te.cache
     --with-icu-dir=/usr/lib/x86_64-linux-gnu \
     --with-mhash=/usr/include \
     --with-libzip=/usr/lib/x86_64-linux-gnu \
-    --with-pcre-regex=/usr/include \
-    --with-pcre-dir=/usr/lib/x86_64-linux-gnu \
+    --with-pcre-regex \
     --with-openssl \
     --with-openssl-dir=/home/user/build-openssl \
     --with-mysql-sock=/usr/sbin/mysqld \
@@ -111,7 +110,7 @@ rm -rf autom4te.cache
     --with-readline=/usr/include \
     --with-tsrm-pthreads \
     --with-xsl=/usr/lib/x86_64-linux-gnu \
-    --with-zlib=/usr/lib/x86_64-linux-gnu \
+    --with-zlib \
     --with-zlib-dir=/usr/lib/x86_64-linux-gnu \
     --with-fpm-user=respawn \
     --config-cache \
