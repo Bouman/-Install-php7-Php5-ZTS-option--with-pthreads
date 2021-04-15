@@ -15,7 +15,7 @@ apt autoremove
 
 # Installation PHP5.6 (Without ZTS pthreads)
 apt update
-apt install -y php5.6 php5.6-xml
+apt install -y php5.6 php5.6-xml php5.6-gd
 
 # Install Apache2
 apt-get install -y apache2 apache2-dev
@@ -69,25 +69,19 @@ rm -rf autom4te.cache/
 ./buildconf --force
 #make distclean
 
-./configure --enable-cli --enable-maintainer-zts --prefix=/usr/local --with-config-file-path=/usr/local --with-apxs2=/usr/bin/apxs \
---enable-mbstring \
+./configure --enable-maintainer-zts --prefix=/usr/local --with-config-file-path=/usr/local/lib --with-libdir=lib64 \
+    --with-apxs2=/usr/bin/apxs \
+    --enable-mbstring \
     --enable-bcmath \
     --enable-calendar \
-    --enable-cli \
-    --with-curl \
+    --with-curl=/usr/bin \
     --enable-debug \
     --enable-exif \
     --enable-fpm \
     --enable-ftp \
-    --enable-hash \
-    --enable-json \
-    --enable-maintainer-zts \
-    --enable-mbregex \
     --enable-mysqlnd \
     --enable-opcache \
     --enable-pcntl \
-    --enable-phar \
-    --enable-posix \
     --enable-session \
     --enable-simplexml \
     --enable-soap \
@@ -95,49 +89,39 @@ rm -rf autom4te.cache/
     --enable-sysvmsg \
     --enable-sysvsem \
     --enable-sysvshm \
-    --enable-xml \
     --enable-wddx \
     --enable-zip \
-    --enable-inline-optimization \
     --disable-cgi \
-    --with-jpeg-dir=/usr/include/ \
-    --with-xpm-dir=/usr/include/ \
-    --with-png-dir=/usr/include/ \
-    --with-enchant \
-    --with-gd \
-    --with-curl \
-    --with-jpeg-dir=/usr \
-    --with-png-dir=shared,/usr \
-    --with-xpm-dir=/usr \
-    --with-freetype-dir=no \
-    --with-bz2=/usr \
-    --with-gettext \
-    --with-iconv-dir=/usr \
-    --with-icu-dir=/usr \
-    --with-mhash \
-    --with-libzip \
-    --with-pcre-regex \
+    --with-jpeg-dir=/usr/include \
+    --with-xpm-dir=/usr/include \
+    --with-png-dir=/usr/include \
+    --with-enchant=/usr/bin \
+    --with-gd=/usr/include \
+    --with-bz2=/usr/bin \
+    --with-gettext=/usr/bin \
+    --with-iconv-dir=/usr/bin \
+    --with-icu-dir=/usr/lib/x86_64-linux-gnu \
+    --with-mhash=/usr/include \
+    --with-libzip=/usr/lib/x86_64-linux-gnu \
+    --with-pcre-regex=/usr/include \
     --with-openssl=/home/user/build-openssl \
     --with-openssl-dir=/home/user/build-openssl \
-    --with-mysql-sock=/var/run/mysqld/mysqld.sock \
-    --with-mysqli=mysqlnd \
-    --with-sqlite3=/usr \
-    --with-mysql \
-    --with-pdo-mysql=mysqlnd \
-    --with-pdo-sqlite=/usr \
-    --with-pspell \
-    --with-readline \
+    --with-mysql-sock=/usr/sbin/mysqld \
+    --with-mysqli=/usr/bin \
+    --with-mysql=/usr/bin \
+    --with-pdo-mysql=/usr/bin \
+    --with-pspell=/usr/include \
+    --with-readline=/usr/include \
     --with-tsrm-pthreads \
-    --with-xsl \
-    --with-zlib \
-    --with-zlib-dir=/usr \
-    --with-fpm-user=www-data \
-    --with-fpm-group=www-data \
+    --with-xsl=/usr/lib/x86_64-linux-gnu \
+    --with-zlib=/usr/lib/x86_64-linux-gnu \
+    --with-zlib-dir=/usr/lib/x86_64-linux-gnu \
+    --with-fpm-user=respawn \
     --config-cache \
-    --localstatedir=/var \
-    --with-layout=GNU \
-    --disable-rpath
-
+    --localstatedir=/usr/local/var \
+    --with-layout=PHP \
+    --enable-roxen-zts
+    
 make -j 4
 make -j 4 install
 libtool --finish /home/install/php-5.6.40/libs
