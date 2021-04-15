@@ -100,7 +100,7 @@ rm -rf autom4te.cache
     --with-mhash=/usr/include \
     --with-libzip=/usr/lib/x86_64-linux-gnu \
     --with-pcre-regex=/usr/include \
-    --with-pcre-dir=/usr/include \
+    --with-pcre-dir=/usr/lib/x86_64-linux-gnu \
     --with-openssl \
     --with-openssl-dir=/home/user/build-openssl \
     --with-mysql-sock=/usr/sbin/mysqld \
