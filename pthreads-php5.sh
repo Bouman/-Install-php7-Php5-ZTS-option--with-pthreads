@@ -108,9 +108,10 @@ rm -rf autom4te.cache
     --with-openssl-dir=/home/user/build-openssl \
     --with-mysql-sock \
     --with-mysqli \
+    --enable-embedded-mysqli \
     --with-mysql \
     --with-pdo-mysql \
-    --with-pspell=/usr/include \
+    --with-pspell \
     --with-readline=/usr/include \
     --with-tsrm-pthreads \
     --with-xsl=/usr/lib/x86_64-linux-gnu \
