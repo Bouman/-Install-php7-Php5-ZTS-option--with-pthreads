@@ -96,7 +96,7 @@ rm -rf autom4te.cache
     --with-xpm-dir=/usr/include \
     --with-png-dir=/usr/include \
     --with-enchant \
-    --with-gd=/usr/include \
+    --with-gd \
     --with-bz2=/usr/bin \
     --with-gettext=/usr/bin \
     --with-iconv-dir=/usr/bin \
