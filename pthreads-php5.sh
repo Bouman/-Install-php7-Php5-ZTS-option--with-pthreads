@@ -118,7 +118,8 @@ rm -rf autom4te.cache
     --with-xsl=/usr/lib/x86_64-linux-gnu \
     --with-zlib \
     --with-zlib-dir=/usr/lib/x86_64-linux-gnu \
-    --with-fpm-user=respawn \
+    --with-fpm-user=www-data \
+    --with-fpm-group=www-data \
     --config-cache \
     --localstatedir=/usr/local/var \
     --with-layout=PHP
