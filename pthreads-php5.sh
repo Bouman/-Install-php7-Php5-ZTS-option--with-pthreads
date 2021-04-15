@@ -38,7 +38,7 @@ cd /
 wget http://pear.php.net/go-pear.phar && php go-pear.phar
 
 #OPENSSL INSTALL v1.0.21 pour compil FOR PHP5.6 dans le dossier build-openssl
-curl https://www.openssl.org/source/openssl-1.0.2u.tar.gz | tar xz && cd openssl-1.0.2u && ./config --prefix=/home/user/build-openssl -fPIC && make -j 4 && make -j 4 install 
+curl https://www.openssl.org/source/openssl-1.0.2u.tar.gz | tar xz && cd openssl-1.0.2u && ./config --prefix=/home/user/build-openssl -m64 -fPIC && make -j 4 && make -j 4 install 
 
 #Etre sur que curl est bien configuré
 cd /usr/include
@@ -69,7 +69,7 @@ rm -rf autom4te.cache/
 ./buildconf --force
 #make distclean
 
-./configure --disable-fileinfo --enable-maintainer-zts --prefix=/usr/local --with-config-file-path=/usr/local --with-apxs2=/usr/bin/apxs \
+./configure --enable-cli --enable-maintainer-zts --prefix=/usr/local --with-config-file-path=/usr/local --with-apxs2=/usr/bin/apxs \
 --enable-mbstring \
     --enable-bcmath \
     --enable-calendar \
