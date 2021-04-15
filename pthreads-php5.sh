@@ -70,7 +70,7 @@ rm -rf autom4te.cache
 ./buildconf --force
 #make distclean
 
-./configure --enable-maintainer-zts --prefix=/usr/local --with-config-file-path=/usr/local/lib --with-libdir=lib/x86_64-linux-gnu \
+./configure --enable-maintainer-zts --prefix=/usr/local --with-config-file-path=/usr/local/lib \
     --with-apxs2=/usr/bin/apxs \
     --enable-mbstring \
     --enable-bcmath \
