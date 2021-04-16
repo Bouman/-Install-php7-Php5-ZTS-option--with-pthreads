@@ -132,8 +132,8 @@ libtool --finish /home/install/php-5.6.40/libs
 chmod o+x /usr/local/bin/phpize
 chmod o+x /usr/local/bin/php-config
 
-cp php.ini-development /usr/local/php.ini
-cp php.ini-development /usr/local/php-cli.ini
+cp php.ini-development /usr/local/lib/php.ini
+cp php.ini-development /usr/local/lib/php-cli.ini
 
 cd /home/install
 wget http://pecl.php.net/get/pthreads-2.0.10.tgz
@@ -149,11 +149,11 @@ echo "<FilesMatch \.php$>
 </FilesMatch>
 " >> /etc/apache2/mods-enabled/php5.6.conf
 
-echo 'date.timezone = Europe/Paris' >> /usr/local/php.ini
-echo 'date.timezone = Europe/Paris' >> /usr/local/php-cli.ini
+echo 'date.timezone = Europe/Paris' >> /usr/local/lib/php.ini
+echo 'date.timezone = Europe/Paris' >> /usr/local/lib/php-cli.ini
 
-echo "zend_extension=opcache.so" >> /usr/local/php.ini
-echo "extension=pthreads.so" >> /usr/local/php-cli.ini
+echo "zend_extension=opcache.so" >> /usr/local/lib/php.ini
+echo "extension=pthreads.so" >> /usr/local/lib/php-cli.ini
 
 #config
 export USE_ZEND_ALLOC=0
