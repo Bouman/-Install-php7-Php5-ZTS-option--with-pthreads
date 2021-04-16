@@ -55,6 +55,7 @@ wget http://pear.php.net/go-pear.phar && php go-pear.phar
 systemctl restart apache2.service
 php -m
 php -v
+systemctl stop apache2.service
 
 #Download PHP Version
 cd /home/install
