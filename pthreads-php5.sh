@@ -122,7 +122,8 @@ rm -rf autom4te.cache
     --config-cache \
     --localstatedir=/usr/local/var \
     --with-layout=PHP
-    
+
+make -j$(nproc) clear 
 make -j$(nproc)
 make -j$(nproc) install
 libtool --finish /home/install/php-5.6.40/libs
