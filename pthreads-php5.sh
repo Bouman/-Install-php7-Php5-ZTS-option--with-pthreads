@@ -3,9 +3,6 @@ export PATH=$PATH:/usr/local/sbin
 export PATH=$PATH:/usr/sbin
 export PATH=$PATH:/sbin
 
-#le dossier qui accueillera le php.ini en relation avec la compilation
-export PATH="$PATH:/usr/local/php/bin/"
-
 mkdir /home/install
 
 #Ajout du dépôt 
@@ -163,5 +160,7 @@ export USE_ZEND_ALLOC=0
 
 #Restart apache
 systemctl restart apache2.service
+#le dossier de php.ini en relation avec la compilation
+export PATH="$PATH:/usr/local/php/bin/"
 php -m
 php -v
