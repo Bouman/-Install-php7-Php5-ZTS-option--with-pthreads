@@ -3,6 +3,9 @@ export PATH=$PATH:/usr/local/sbin
 export PATH=$PATH:/usr/sbin
 export PATH=$PATH:/sbin
 
+#le dossier qui accueillera le php.ini en relation avec la compilation
+export PATH="$PATH:/usr/local/php/bin/"
+
 mkdir /home/install
 
 #Ajout du dépôt 
@@ -56,9 +59,6 @@ systemctl restart apache2.service
 php -m
 php -v
 systemctl stop apache2.service
-
-#le dossier qui accueillera le php.ini en relation avec la compilation
-export PATH="$PATH:/usr/local/php/bin/"
 
 #Download PHP Version
 cd /home/install
