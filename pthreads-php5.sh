@@ -57,6 +57,9 @@ php -m
 php -v
 systemctl stop apache2.service
 
+#le dossier qui accueillera le php.ini en relation avec la compilation
+export PATH="$PATH:/usr/local/php/bin/"
+
 #Download PHP Version
 cd /home/install
 wget http://be2.php.net/get/php-5.6.40.tar.bz2/from/this/mirror -O php-5.6.40.tar.bz2
