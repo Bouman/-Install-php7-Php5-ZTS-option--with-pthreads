@@ -31,7 +31,7 @@ apt install -y mariadb-server libmariadb-dev-compat libmariadb-dev
 mysql_secure_installation
 
 # Installation PHP5.6 (Without ZTS pthreads)
-apt install -y php5.6 php5.6-xml php5.6-gd php5.6-mysqli
+apt install -y php5.6 php5.6-xml php5.6-gd php5.6-mysqli php5.6-mbstring
 
 #OPENSSL INSTALL v1.0.21 + CURL pour compil FOR PHP5.6 dans le dossier build-openssl
 cd /
