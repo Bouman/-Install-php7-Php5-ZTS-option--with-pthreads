@@ -7,19 +7,19 @@ mkdir /home/install
 
 apt-get update
 apt-get dist-upgrade
-apt-get install build-essential
+apt-get install -y build-essential
 apt autoremove
 
 # Dependance Prérequis
 apt-get install -y autoconf make g++ gcc git curl nodejs unzip sqlite dpkg-dev pkg-config libdpkg-perl composer debhelper po-debconf gettext rpm flex fakeroot bc xz-utils rsync bison re2c
 
 # Install Apache2
-apt-get install apache2 apache2-dev
+apt-get install -y apache2 apache2-dev
 source /etc/apache2/envvars
 /usr/sbin/apache2 -V
 
 #Librairie pour php
-apt-get install libcurl4 zlib1g-dev libcurl4-openssl-dev libncurses5-dev libbz2-dev libssl-dev libenchant-dev libedit-dev libreadline-dev libelf-dev libxslt1-dev libwebp-dev libxpm-dev libpspell-dev libonig-dev libtool-bin libsqlite3-dev libreadline-dev libzip-dev libxslt1-dev libicu-dev libmcrypt-dev libmhash-dev libpcre3-dev libjpeg-dev libfreetype6-dev libbz2-dev libxpm-dev
+apt-get install -y libcurl4 zlib1g-dev libcurl4-openssl-dev libncurses5-dev libbz2-dev libssl-dev libenchant-dev libedit-dev libreadline-dev libelf-dev libxslt1-dev libwebp-dev libxpm-dev libpspell-dev libonig-dev libtool-bin libsqlite3-dev libreadline-dev libzip-dev libxslt1-dev libicu-dev libmcrypt-dev libmhash-dev libpcre3-dev libjpeg-dev libfreetype6-dev libbz2-dev libxpm-dev
 apt-get install -y libcurl4-openssl-dev libsasl2-dev
 
 # Install Mysql
@@ -27,7 +27,7 @@ apt install -y mariadb-server libmariadb-dev-compat libmariadb-dev
 mysql_secure_installation
 
 # Installation PHP7 (Without ZTS pthreads)
-apt-get install php7.3 php7.3-xml php7.3-gd php7.3-mysqli php7.3-mbstring
+apt-get -y install php7.3 php7.3-xml php7.3-gd php7.3-mysqli php7.3-mbstring
 
 #Etre sur que curl est bien configuré
 # cd /usr/include
