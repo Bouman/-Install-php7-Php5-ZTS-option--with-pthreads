@@ -41,9 +41,9 @@ mv icu-config /usr/bin
 #PEAR install
 cd /
 wget http://pear.php.net/go-pear.phar && php go-pear.phar
-#pear config-set php_bin /usr/local/bin/php
-#pear config-set php_prefix /usr/local
-#pear config-set php_ini /etc/local
+pear config-set php_bin /usr/local/bin/php
+pear config-set php_prefix /usr/local
+#pear config-set php_ini /usr/local/lib
 
 #Restart apache
 systemctl restart apache2.service
