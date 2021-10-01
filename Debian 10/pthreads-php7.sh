@@ -45,6 +45,7 @@ cd ..
 
 #PEAR install
 wget http://pear.php.net/go-pear.phar && php go-pear.phar
+pear config-set php_bin /usr/bin/php
 
 #Suppression des fichier PHP actuel
 rm -rf aclocal.m4
