@@ -1,24 +1,33 @@
 #!/bin/bash
+export PATH=$PATH:/usr/local/sbin
+export PATH=$PATH:/usr/sbin
+export PATH=$PATH:/sbin
+
+mkdir /home/install
 
 apt-get update
 apt-get dist-upgrade
 apt-get install build-essential
+apt autoremove
 
 # Dependance Prérequis
-apt-get install autoconf make g++ gcc git curl dpkg-dev libdpkg-perl debhelper po-debconf gettext rpm flex fakeroot bc xz-utils rsync composer bison re2c
+apt-get install -y autoconf make g++ gcc git curl nodejs unzip sqlite dpkg-dev pkg-config libdpkg-perl composer debhelper po-debconf gettext rpm flex fakeroot bc xz-utils rsync bison re2c
 
 # Install Apache2
 apt-get install apache2 apache2-dev
+source /etc/apache2/envvars
+/usr/sbin/apache2 -V
 
 #Librairie pour php
 apt-get install libcurl4 zlib1g-dev libcurl4-openssl-dev libncurses5-dev libbz2-dev libssl-dev libenchant-dev libedit-dev libreadline-dev libelf-dev libxslt1-dev libwebp-dev libxpm-dev libpspell-dev libonig-dev libtool-bin libsqlite3-dev libreadline-dev libzip-dev libxslt1-dev libicu-dev libmcrypt-dev libmhash-dev libpcre3-dev libjpeg-dev libfreetype6-dev libbz2-dev libxpm-dev
+apt-get install -y libcurl4-openssl-dev libsasl2-dev
 
 # Install Mysql
-apt install mariadb-server
+apt install -y mariadb-server libmariadb-dev-compat libmariadb-dev
 mysql_secure_installation
 
 # Installation PHP7 (Without ZTS pthreads)
-apt-get install php7.3
+apt-get install php7.3 php7.3-xml php7.3-gd php7.3-mysqli php7.3-mbstring
 
 #Etre sur que curl est bien configuré
 # cd /usr/include
@@ -29,8 +38,18 @@ curl https://gist.githubusercontent.com/jasny/e91f4e2d386e91e6de5cf581795e9408/r
 chmod +x icu-config
 mv icu-config /usr/bin
 
-# Deplacement à la base
+#PEAR install
 cd /
+wget http://pear.php.net/go-pear.phar && php go-pear.phar
+#pear config-set php_bin /usr/local/bin/php
+#pear config-set php_prefix /usr/local
+#pear config-set php_ini /etc/local
+
+#Restart apache
+systemctl restart apache2.service
+php -m
+php -v
+systemctl stop apache2.service
 
 #Telechargement PHP 7.3.27 + extraction et suppresion.
 wget http://cl1.php.net/get/php-7.3.27.tar.gz/from/this/mirror -O php-7.3.27.tar.gz
@@ -43,12 +62,6 @@ cd php-7.3.27/ext
 git clone https://github.com/krakjoe/pthreads -b master pthreads
 cd ..
 
-#PEAR install
-wget http://pear.php.net/go-pear.phar && php go-pear.phar
-pear config-set php_bin /usr/bin/php
-pear config-set php_prefix /usr
-pear config-set php_ini /etc
-
 #Suppression des fichier PHP actuel
 rm -rf aclocal.m4
 rm -rf autom4te.cache/
@@ -57,7 +70,7 @@ rm -rf autom4te.cache/
 ./buildconf --force
 make -j$(nproc) distclean
 
-./configure --disable-fileinfo --enable-maintainer-zts --prefix=/usr --with-config-file-path=/etc --with-curl --enable-cli --with-apxs2=/usr/bin/apxs \
+./configure --disable-fileinfo --enable-maintainer-zts --prefix=/usr/local --with-config-file-path=/usr/local/lib --with-apxs2=/usr/local/bin/apxs \
 --enable-mbstring \
     --enable-bcmath \
     --enable-calendar \
@@ -134,13 +147,6 @@ libtool --finish /php-7.3.27/libs
 chmod o+x /usr/bin/phpize
 chmod o+x /usr/bin/php-config
 
-cd ext/pthreads*
-/usr/bin/phpize
-
-./configure --prefix=/usr --enable-pthreads=shared --with-php-config=/usr/bin/php-config
-make -j$(nproc) && make -j$(nproc) install
-cd ../../
-
 #####Config PHP.INI DU SERVEUR#########
 #    nano php.ini-development         #
 # display_errors = Off ===> on        #
@@ -155,8 +161,15 @@ cd ../../
 #                                     #
 #######################################
 
-cp php.ini-development /etc/php.ini
-cp php.ini-development /etc/php-cli.ini
+cp php.ini-development /usr/local/lib/php.ini
+cp php.ini-development /usr/local/lib/php-cli.ini
+
+cd ext/pthreads*
+/usr/bin/phpize
+
+./configure --prefix=/usr/local --enable-pthreads=shared --with-php-config=/usr/local/bin/php-config
+make -j$(nproc) && make -j$(nproc) install
+cd ../../
 
 cp /etc/apache2/mods-available/php7.load /etc/apache2/mods-enabled/php7.load
 echo "<FilesMatch \.php$>
@@ -168,17 +181,19 @@ echo "<FilesMatch \.php$>
 cd ..
 rm -rf php-7.3.27
 
+echo 'date.timezone = Europe/Paris' >> /usr/local/lib/php.ini
+echo 'date.timezone = Europe/Paris' >> /usr/local/lib/php-cli.ini
+
 #extension on php.ini
-echo "extension=pthreads.so" >> /etc/php-cli.ini
-echo "zend_extension=opcache.so" >> /etc/php.ini
+echo "zend_extension=opcache.so" >> /usr/local/lib/php.ini
+echo "extension=pthreads.so" >> /usr/local/lib/php-cli.ini
 
 #config
 export USE_ZEND_ALLOC=0
 
-# Time Zone Php.ini
-sed -i "s/^;date.timezone =$/date.timezone = \"Europe\/Paris\"/" /etc/php.ini |grep "^timezone" /etc/php.ini
-
 #Restart apache
 systemctl status apache2.service
+#le dossier de php.ini en relation avec la compilation
+export PATH="$PATH:/usr/local/php/bin/"
 php -m
 php -v
