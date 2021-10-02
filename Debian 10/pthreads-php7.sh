@@ -70,7 +70,7 @@ rm -rf autom4te.cache/
 ./buildconf --force
 make -j$(nproc) distclean
 
-./configure --disable-fileinfo --enable-maintainer-zts --prefix=/etc --with-config-file-path=/usr/local/lib --with-apxs2=/usr/local/bin/apxs \
+./configure --disable-fileinfo --enable-maintainer-zts --prefix=/usr --with-config-file-path=/etc --with-apxs2=/usr/local/bin/apxs \
 --enable-mbstring \
     --enable-bcmath \
     --enable-calendar \
@@ -193,7 +193,6 @@ export USE_ZEND_ALLOC=0
 
 #Restart apache
 systemctl status apache2.service
-#le dossier de php.ini en relation avec la compilation
-export PATH="$PATH:/usr/local/php/bin/"
+
 php -m
 php -v
