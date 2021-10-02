@@ -41,8 +41,8 @@ mv icu-config /usr/bin
 #PEAR install
 cd /
 wget http://pear.php.net/go-pear.phar && php go-pear.phar
-pear config-set php_bin /usr/local/bin/php
-pear config-set php_prefix /usr/local
+#pear config-set php_bin /usr/local/bin/php
+#pear config-set php_prefix /usr/local
 #pear config-set php_ini /usr/local/lib
 
 #Restart apache
@@ -70,7 +70,7 @@ rm -rf autom4te.cache/
 ./buildconf --force
 make -j$(nproc) distclean
 
-./configure --disable-fileinfo --enable-maintainer-zts --prefix=/usr/local --with-config-file-path=/usr/local/lib --with-apxs2=/usr/local/bin/apxs \
+./configure --disable-fileinfo --enable-maintainer-zts --prefix=/etc --with-config-file-path=/usr/local/lib --with-apxs2=/usr/local/bin/apxs \
 --enable-mbstring \
     --enable-bcmath \
     --enable-calendar \
@@ -161,13 +161,13 @@ chmod o+x /usr/bin/php-config
 #                                     #
 #######################################
 
-cp php.ini-development /usr/local/lib/php.ini
-cp php.ini-development /usr/local/lib/php-cli.ini
+cp php.ini-development /etc/php.ini
+cp php.ini-development /etc/php-cli.ini
 
 cd ext/pthreads*
 /usr/bin/phpize
 
-./configure --prefix=/usr/local --enable-pthreads=shared --with-php-config=/usr/local/bin/php-config
+./configure --prefix=/etc --enable-pthreads=shared --with-php-config=/usr/local/bin/php-config
 make -j$(nproc) && make -j$(nproc) install
 cd ../../
 
@@ -181,12 +181,12 @@ echo "<FilesMatch \.php$>
 cd ..
 rm -rf php-7.3.27
 
-echo 'date.timezone = Europe/Paris' >> /usr/local/lib/php.ini
-echo 'date.timezone = Europe/Paris' >> /usr/local/lib/php-cli.ini
+echo 'date.timezone = Europe/Paris' >> /etc/php.ini
+echo 'date.timezone = Europe/Paris' >> /etc/php-cli.ini
 
 #extension on php.ini
-echo "zend_extension=opcache.so" >> /usr/local/lib/php.ini
-echo "extension=pthreads.so" >> /usr/local/lib/php-cli.ini
+echo "zend_extension=opcache.so" >> /etc/php.ini
+echo "extension=pthreads.so" >> /etc/php-cli.ini
 
 #config
 export USE_ZEND_ALLOC=0
