@@ -27,6 +27,10 @@ apt install -y mariadb-server libmariadb-dev-compat libmariadb-dev
 mysql_secure_installation
 
 # Installation PHP7 (Without ZTS pthreads)
+apt install -y apt-transport-https lsb-release ca-certificates wget
+wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
+echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/php.list
+apt update
 apt-get -y install php7.3 php7.3-xml php7.3-gd php7.3-mysqli php7.3-mbstring
 
 #Etre sur que curl est bien configuré
