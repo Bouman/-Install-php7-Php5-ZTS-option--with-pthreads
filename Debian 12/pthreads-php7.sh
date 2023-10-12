@@ -11,7 +11,7 @@ apt-get install -y build-essential
 apt autoremove
 
 # Dependance Prérequis
-apt-get install -y autoconf make g++ gcc git curl nodejs unzip sqlite dpkg-dev pkg-config libdpkg-perl composer debhelper po-debconf gettext rpm flex fakeroot bc xz-utils rsync bison re2c
+apt-get install -y autoconf make g++ gcc git curl nodejs unzip dpkg-dev pkg-config libdpkg-perl composer debhelper po-debconf gettext rpm flex fakeroot bc xz-utils rsync bison re2c sqlite3
 
 # Install Apache2
 apt-get install -y apache2 apache2-dev
@@ -19,7 +19,7 @@ source /etc/apache2/envvars
 /usr/sbin/apache2 -V
 
 #Librairie pour php
-apt-get install -y libcurl4 zlib1g-dev libcurl4-openssl-dev libncurses5-dev libbz2-dev libssl-dev libenchant-dev libedit-dev libreadline-dev libelf-dev libxslt1-dev libwebp-dev libxpm-dev libpspell-dev libonig-dev libtool-bin libsqlite3-dev libreadline-dev libzip-dev libxslt1-dev libicu-dev libmcrypt-dev libmhash-dev libpcre3-dev libjpeg-dev libfreetype6-dev libbz2-dev libxpm-dev
+apt-get install -y libcurl4 zlib1g-dev libcurl4-openssl-dev libncurses5-dev libbz2-dev libssl-dev libedit-dev libreadline-dev libelf-dev libxslt1-dev libwebp-dev libxpm-dev libpspell-dev libonig-dev libtool-bin libsqlite3-dev libreadline-dev libzip-dev libxslt1-dev libicu-dev libmcrypt-dev libmhash-dev libpcre3-dev libjpeg-dev libfreetype6-dev libbz2-dev libxpm-dev
 apt-get install -y libcurl4-openssl-dev libsasl2-dev
 
 # Install Mysql
@@ -68,9 +68,9 @@ rm -rf autom4te.cache/
 
 #Preparation + compilation
 ./buildconf --force
-make -j$(nproc) distclean
+make distclean
 
-./configure --disable-fileinfo --enable-maintainer-zts --prefix=/usr --with-config-file-path=/etc --with-apxs2=/usr/local/bin/apxs \
+./configure --disable-fileinfo --enable-maintainer-zts --prefix=/usr --with-config-file-path=/etc \
 --enable-mbstring \
     --enable-bcmath \
     --enable-calendar \
@@ -106,7 +106,6 @@ make -j$(nproc) distclean
     --with-xpm-dir=/usr/include/ \
     --with-webp-dir=/usr/include/ \
     --with-png-dir=/usr/include/ \
-    --with-enchant \
     --with-icu-dir=/usr \
     --with-gd \
     --with-curl \
@@ -139,9 +138,9 @@ make -j$(nproc) distclean
     --with-layout=GNU \
     --disable-rpath
 
-make -j$(nproc) clear 
-make -j$(nproc)
-make -j$(nproc) install
+make -j24 clear 
+make -j24
+make -j24 install
 libtool --finish /php-7.3.27/libs
 
 chmod o+x /usr/bin/phpize
@@ -167,8 +166,8 @@ cp php.ini-development /etc/php-cli.ini
 cd ext/pthreads*
 /usr/bin/phpize
 
-./configure --prefix=/etc --enable-pthreads=shared --with-php-config=/usr/local/bin/php-config
-make -j$(nproc) && make -j$(nproc) install
+./configure --prefix=/etc --enable-pthreads=shared --with-php-config=/usr/bin/php-config
+make -j24 && make -j24 install
 cd ../../
 
 cp /etc/apache2/mods-available/php7.load /etc/apache2/mods-enabled/php7.load
